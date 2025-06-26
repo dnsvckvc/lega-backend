@@ -1,0 +1,72 @@
+INFO 2025-06-26 16:45:21,651 autoreload 22917 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 16:55:08,597 autoreload 22917 8343653376 /Users/dvuckovac/projects/vibe/claude-first/legal_backend/settings.py changed, reloading.
+INFO 2025-06-26 16:55:09,359 autoreload 23204 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 16:56:13,471 autoreload 23204 8343653376 /Users/dvuckovac/projects/vibe/claude-first/authentication/views.py changed, reloading.
+INFO 2025-06-26 16:56:14,162 autoreload 23246 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 16:57:04,262 autoreload 23246 8343653376 /Users/dvuckovac/projects/vibe/claude-first/authentication/views.py changed, reloading.
+INFO 2025-06-26 16:57:04,995 autoreload 23278 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 16:57:25,964 autoreload 23278 8343653376 /Users/dvuckovac/projects/vibe/claude-first/authentication/views.py changed, reloading.
+INFO 2025-06-26 16:57:26,356 autoreload 23315 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 17:00:12,461 autoreload 23315 8343653376 /Users/dvuckovac/projects/vibe/claude-first/authentication/views.py changed, reloading.
+INFO 2025-06-26 17:00:13,232 autoreload 23412 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 17:00:47,703 autoreload 23412 8343653376 /Users/dvuckovac/projects/vibe/claude-first/legal_backend/settings.py changed, reloading.
+INFO 2025-06-26 17:00:48,329 autoreload 23497 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 18:35:30,715 autoreload 23497 8343653376 /Users/dvuckovac/projects/vibe/claude-first/legal_backend/urls.py changed, reloading.
+INFO 2025-06-26 18:35:31,676 autoreload 25187 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 18:46:23,348 autoreload 25187 8343653376 /Users/dvuckovac/projects/vibe/claude-first/legal_backend/settings.py changed, reloading.
+INFO 2025-06-26 18:46:24,007 autoreload 25588 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 18:46:39,179 basehttp 25588 6125072384 "GET /api/clients/ HTTP/1.1" 200 559
+INFO 2025-06-26 18:46:39,196 basehttp 25588 6125072384 "GET /api/lawyers/ HTTP/1.1" 200 697
+INFO 2025-06-26 18:46:39,218 basehttp 25588 6125072384 "GET /api/mandates/ HTTP/1.1" 200 1341
+INFO 2025-06-26 18:47:16,250 basehttp 25588 6125072384 "GET /monitoring/dashboard/ HTTP/1.1" 200 555
+WARNING 2025-06-26 18:56:28,361 basehttp 25588 6125072384 "GET /monitoring/dashboard/ HTTP/1.1" 401 172
+WARNING 2025-06-26 19:00:26,022 basehttp 25588 6125072384 "POST /auth/logout/ HTTP/1.1" 401 172
+INFO 2025-06-26 19:00:44,974 basehttp 25588 6125072384 "POST /auth/login/ HTTP/1.1" 200 618
+WARNING 2025-06-26 19:00:56,963 basehttp 25588 6125072384 "POST /auth/logout/ HTTP/1.1" 400 25
+WARNING 2025-06-26 19:01:20,373 basehttp 25588 6125072384 "GET /auth/current-user/ HTTP/1.1" 401 172
+INFO 2025-06-26 19:01:30,385 basehttp 25588 6125072384 "POST /auth/login/ HTTP/1.1" 200 618
+INFO 2025-06-26 19:03:39,638 autoreload 25588 8343653376 /Users/dvuckovac/projects/vibe/claude-first/legal_backend/settings.py changed, reloading.
+INFO 2025-06-26 19:03:40,326 autoreload 26181 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 19:04:26,850 autoreload 26181 8343653376 /Users/dvuckovac/projects/vibe/claude-first/authentication/views.py changed, reloading.
+INFO 2025-06-26 19:04:27,696 autoreload 26304 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 19:11:36,191 autoreload 26304 8343653376 /Users/dvuckovac/projects/vibe/claude-first/authentication/views.py changed, reloading.
+INFO 2025-06-26 19:11:37,251 autoreload 26435 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-26 19:11:48,801 basehttp 26435 6165524480 "POST /auth/logout/ HTTP/1.1" 200 37
+INFO 2025-06-26 20:27:28,602 test_logging 27170 8343653376 Test log message
+INFO 2025-06-26 20:55:13,732 test_logging 28181 8343653376 Test performance log
+INFO 2025-06-26 20:55:13,732 test_logging 28181 8343653376 Test API log
+INFO 2025-06-26 20:55:13,732 test_logging 28181 8343653376 Test log message
+INFO 2025-06-26 20:56:36,351 test_logging 28200 8343653376 Test performance log
+INFO 2025-06-26 20:56:36,351 test_logging 28200 8343653376 Test API log
+INFO 2025-06-26 20:56:36,352 test_logging 28200 8343653376 Test log message
+INFO 2025-06-26 20:57:00,624 test_logging 28257 8343653376 Test performance log
+INFO 2025-06-26 20:57:00,626 test_logging 28257 8343653376 Test API log
+INFO 2025-06-26 20:57:00,627 test_logging 28257 8343653376 Test log message
+INFO 2025-06-26 21:05:27,780 test_logging 28587 8343653376 Test performance log
+INFO 2025-06-26 21:05:27,780 test_logging 28587 8343653376 Test API log
+INFO 2025-06-26 21:05:27,781 test_logging 28587 8343653376 Test log message
+INFO 2025-06-26 21:12:46,729 test_logging 28784 8343653376 Test performance log
+INFO 2025-06-26 21:12:46,729 test_logging 28784 8343653376 Test API log
+INFO 2025-06-26 21:12:46,729 test_logging 28784 8343653376 Test log message
+INFO 2025-06-26 21:17:35,260 test_logging 28922 8343653376 Test performance log
+INFO 2025-06-26 21:17:35,260 test_logging 28922 8343653376 Test API log
+INFO 2025-06-26 21:17:35,261 test_logging 28922 8343653376 Test log message
+INFO 2025-06-26 21:31:56,090 test_logging 29303 8343653376 Test performance log
+INFO 2025-06-26 21:31:56,091 test_logging 29303 8343653376 Test API log
+INFO 2025-06-26 21:31:56,091 test_logging 29303 8343653376 Test log message
+INFO 2025-06-26 21:32:32,877 basehttp 26435 6165524480 "POST /auth/login/ HTTP/1.1" 200 618
+INFO 2025-06-26 21:32:37,891 basehttp 26435 6165524480 "GET /auth/current-user/ HTTP/1.1" 200 237
+WARNING 2025-06-26 21:33:51,144 basehttp 26435 6325039104 "GET /auth/login/ HTTP/1.1" 405 12435
+INFO 2025-06-26 21:34:18,140 basehttp 26435 6325039104 "POST /auth/login/ HTTP/1.1" 200 13241
+WARNING 2025-06-26 21:34:50,853 basehttp 26435 6325039104 "GET /auth/current-user/ HTTP/1.1" 401 9993
+INFO 2025-06-26 21:35:19,947 basehttp 26435 6165524480 "GET /api/clients/ HTTP/1.1" 200 559
+INFO 2025-06-26 21:35:34,814 basehttp 26435 6165524480 "POST /api/clients/ HTTP/1.1" 201 260
+INFO 2025-06-26 21:35:42,076 basehttp 26435 6165524480 "GET /api/clients/11/ HTTP/1.1" 200 256
+INFO 2025-06-26 21:35:48,178 basehttp 26435 6165524480 "GET /api/clients/11/mandates/ HTTP/1.1" 200 430
+INFO 2025-06-26 21:35:54,239 basehttp 26435 6165524480 "GET /api/lawyers/ HTTP/1.1" 200 697
+INFO 2025-06-26 21:36:03,231 basehttp 26435 6165524480 "GET /api/lawyers/13/monthly_billing/?month=6&year=2025 HTTP/1.1" 200 378
+INFO 2025-06-26 21:36:18,170 basehttp 26435 6165524480 "GET /api/mandates/?status=overdue HTTP/1.1" 200 455
+INFO 2025-06-26 21:38:42,067 test_logging 29415 8343653376 Test performance log
+INFO 2025-06-26 21:38:42,067 test_logging 29415 8343653376 Test API log
+INFO 2025-06-26 21:38:42,068 test_logging 29415 8343653376 Test log message
+INFO 2025-06-26 21:39:38,970 basehttp 26435 6165524480 "GET /api/time-entries/?date_from=2025-06-01&date_to=2025-06-30 HTTP/1.1" 200 1222

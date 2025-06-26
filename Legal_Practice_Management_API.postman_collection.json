@@ -1,0 +1,1243 @@
+{
+	"info": {
+		"_postman_id": "legal-practice-api-collection",
+		"name": "Legal Practice Management API",
+		"description": "Comprehensive Postman collection for testing the Legal Practice Management Django REST API. This collection includes all CRUD operations, filtering, searching, and custom endpoints.\n\n## Getting Started\n1. Import this collection into Postman\n2. Set up the environment variables (base_url)\n3. Start your Django server: `python manage.py runserver`\n4. Populate test data: `python manage.py populate_test_data --clear`\n5. Start testing the APIs!\n\n## Features Covered\n- Client management\n- Lawyer management with monthly billing\n- Mandate management with active/inactive filtering\n- Time entry tracking\n- Search and filtering capabilities\n- Cost calculations and summaries",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🏢 Clients",
+			"item": [
+				{
+					"name": "Get All Clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Tech Startup Inc.\",\n    \"email\": \"contact@newtechstartup.com\",\n    \"phone\": \"555-0199\",\n    \"address\": \"456 Innovation Drive, Silicon Valley, CA 94000\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\": \"555-0200\",\n    \"address\": \"Updated address, New City, NY 10001\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client's Mandates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/1/mandates/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1",
+								"mandates",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/?search=Tech",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Tech"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "⚖️ Lawyers",
+			"item": [
+				{
+					"name": "Get All Lawyers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Lawyer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alex Partner\",\n    \"email\": \"alex.partner@lawfirm.com\",\n    \"phone\": \"555-0300\",\n    \"hourly_rate\": \"475.00\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lawyer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Lawyer",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hourly_rate\": \"525.00\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lawyer's Mandates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/1/mandates/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								"1",
+								"mandates",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lawyer's Time Entries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/1/time_entries/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								"1",
+								"time_entries",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lawyer Monthly Billing (Current Month)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/1/monthly_billing/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								"1",
+								"monthly_billing",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lawyer Monthly Billing (Specific Month)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/1/monthly_billing/?month=6&year=2025",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								"1",
+								"monthly_billing",
+								""
+							],
+							"query": [
+								{
+									"key": "month",
+									"value": "6"
+								},
+								{
+									"key": "year",
+									"value": "2025"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Lawyers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/?search=Sarah",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Sarah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Lawyers by Hourly Rate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/?ordering=-hourly_rate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-hourly_rate"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "📁 Mandates",
+			"item": [
+				{
+					"name": "Get All Mandates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Active Mandates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?status=active",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "active"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inactive Mandates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?status=inactive",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "inactive"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Overdue Mandates (Active Only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?status=overdue",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "overdue"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Mandate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Merger & Acquisition Review\",\n    \"description\": \"Legal review and due diligence for corporate merger\",\n    \"client\": 1,\n    \"lawyers\": [1, 2],\n    \"due_date\": \"2025-09-30\",\n    \"cost_ceiling\": \"125000.00\",\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mandates/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mandate Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Mandate",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_active\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mandates/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mandate Summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/1/summary/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								"1",
+								"summary",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mandate Time Entries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/1/time_entries/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								"1",
+								"time_entries",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?client=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "client",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Due Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?due_date_from=2025-07-01&due_date_to=2025-08-31",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "due_date_from",
+									"value": "2025-07-01"
+								},
+								{
+									"key": "due_date_to",
+									"value": "2025-08-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Mandates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?search=contract",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "contract"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order by Due Date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?ordering=due_date",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "due_date"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "⏱️ Time Entries",
+			"item": [
+				{
+					"name": "Get All Time Entries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Time Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mandate\": 1,\n    \"lawyer\": 1,\n    \"date\": \"2025-06-24\",\n    \"hours\": \"5.5\",\n    \"description\": \"Contract review and client consultation\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Time Entry by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Time Entry",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hours\": \"6.0\",\n    \"description\": \"Extended contract review and client consultation with additional research\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Time Entry",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?date_from=2025-06-01&date_to=2025-06-30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2025-06-01"
+								},
+								{
+									"key": "date_to",
+									"value": "2025-06-30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Lawyer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?lawyer=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "lawyer",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Mandate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?mandate=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "mandate",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Time Entries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?search=research",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "research"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order by Date (Newest First)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?ordering=-date",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-date"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order by Hours (Highest First)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?ordering=-hours",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-hours"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🔍 Advanced Filtering & Search",
+			"item": [
+				{
+					"name": "Complex Mandate Filter (Active + Date Range)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?status=active&due_date_from=2025-07-01",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "active"
+								},
+								{
+									"key": "due_date_from",
+									"value": "2025-07-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Time Entries This Week",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?date_from=2025-06-18&date_to=2025-06-24",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2025-06-18"
+								},
+								{
+									"key": "date_to",
+									"value": "2025-06-24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Across All Models",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?search=Tech Solutions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Tech Solutions"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Example",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?page=1&page_size=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "📊 Reports & Analytics",
+			"item": [
+				{
+					"name": "All Lawyer Monthly Billing Summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/?ordering=-hourly_rate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"lawyers",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-hourly_rate"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Mandate Cost Summaries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?ordering=-created_at",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mandates",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-created_at"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "High-Value Time Entries (6+ hours)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?ordering=-hours",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"time-entries",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-hours"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}

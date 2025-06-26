@@ -1,0 +1,16 @@
+2025-06-26 19:00:44,973 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: sarah.wilson@lawfirm.com | Role: admin | IP: 127.0.0.1 | User-Agent: PostmanRuntime/7.37.3
+2025-06-26 19:00:56,961 | WARNING | legal_backend.auth | LOGOUT_FAILED | User: sarah.wilson@lawfirm.com | IP: 127.0.0.1 | Error: 'RefreshToken' object has no attribute 'blacklist'
+2025-06-26 19:01:30,382 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: sarah.wilson@lawfirm.com | Role: admin | IP: 127.0.0.1 | User-Agent: PostmanRuntime/7.37.3
+2025-06-26 19:11:48,799 | INFO | legal_backend.auth | LOGOUT_SUCCESS | User: sarah.wilson@lawfirm.com | IP: 127.0.0.1
+2025-06-26 20:27:28,600 | INFO | legal_backend.auth | Test auth log
+2025-06-26 20:55:05,121 | WARNING | legal_backend.auth | LOGIN_FAILED | Email: admin@test.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]} | User-Agent: unknown
+2025-06-26 20:55:05,403 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: admin@test.com | Role: admin | IP: 127.0.0.1 | User-Agent: unknown
+2025-06-26 20:55:05,888 | INFO | legal_backend.auth | USER_CREATED | New User: new@test.com | Role: lawyer | Created By: admin@test.com | IP: 127.0.0.1
+2025-06-26 20:56:27,741 | WARNING | legal_backend.auth | LOGIN_FAILED | Email: admin@test.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]} | User-Agent: unknown
+2025-06-26 20:56:28,018 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: admin@test.com | Role: admin | IP: 127.0.0.1 | User-Agent: unknown
+2025-06-26 20:56:28,492 | INFO | legal_backend.auth | USER_CREATED | New User: new@test.com | Role: lawyer | Created By: admin@test.com | IP: 127.0.0.1
+2025-06-26 21:32:32,875 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: sarah.wilson@lawfirm.com | Role: admin | IP: 127.0.0.1 | User-Agent: PostmanRuntime/7.37.3
+2025-06-26 21:34:18,135 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: sarah.wilson@lawfirm.com | Role: admin | IP: 127.0.0.1 | User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.
+2025-06-26 21:38:33,729 | WARNING | legal_backend.auth | LOGIN_FAILED | Email: admin@test.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]} | User-Agent: unknown
+2025-06-26 21:38:34,020 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: admin@test.com | Role: admin | IP: 127.0.0.1 | User-Agent: unknown
+2025-06-26 21:38:34,506 | INFO | legal_backend.auth | USER_CREATED | New User: new@test.com | Role: lawyer | Created By: admin@test.com | IP: 127.0.0.1

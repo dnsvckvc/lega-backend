@@ -1,0 +1,591 @@
+2025-06-26 18:46:39,160 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: curl/7.84.0
+2025-06-26 18:46:39,178 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 18:46:39,191 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: curl/7.84.0
+2025-06-26 18:46:39,195 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 18:46:39,208 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: curl/7.84.0
+2025-06-26 18:46:39,218 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 18:47:16,236 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: curl/7.84.0
+2025-06-26 18:47:16,249 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 18:56:28,358 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: curl/7.84.0
+2025-06-26 18:56:28,361 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is invalid', code='token_not_valid')}]}
+2025-06-26 19:00:26,005 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | body: {'refresh_token': '***REDACTED***'}
+2025-06-26 19:00:26,013 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+2025-06-26 19:00:44,854 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | body: {'email': 'sarah.wilson@lawfirm.com', 'password': '***REDACTED***'}
+2025-06-26 19:00:44,974 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 19:00:56,957 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | body: {'refresh_token': '***REDACTED***'}
+2025-06-26 19:00:56,962 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 400 | user: sarah.wilson@lawfirm.com | response_body: {'error': 'Invalid token'}
+2025-06-26 19:01:20,367 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/current-user/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3
+2025-06-26 19:01:20,372 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/current-user/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is invalid', code='token_not_valid')}]}
+2025-06-26 19:01:30,262 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | body: {'email': 'sarah.wilson@lawfirm.com', 'password': '***REDACTED***'}
+2025-06-26 19:01:30,384 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 19:11:48,782 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: curl/7.84.0 | body: {'refresh_token': '***REDACTED***'}
+2025-06-26 19:11:48,801 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 20:27:28,108 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:27:28,206 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 20:27:28,298 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:27:28,412 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:27:28,504 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:27:28,597 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:27:28,597 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:27:28,599 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 20:27:28,600 | INFO | legal_backend.api | Test API log
+2025-06-26 20:54:29,649 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:54:29,774 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:55:05,028 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:05,123 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 20:55:05,306 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:05,404 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:55:05,586 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/profile/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:05,586 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/profile/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:55:05,586 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/profile/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:05,604 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/profile/ | status: 200 | user: lawyer@test.com
+2025-06-26 20:55:05,784 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:05,785 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:55:05,785 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:05,785 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 403 | user: lawyer@test.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 20:55:05,786 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:05,889 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 201 | user: admin@test.com
+2025-06-26 20:55:06,071 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:06,071 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 403 | user: lawyer@test.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 20:55:06,071 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:06,073 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 201 | user: admin@test.com
+2025-06-26 20:55:06,257 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:06,258 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:55:06,258 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:06,263 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:06,264 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:06,266 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: lawyer@test.com
+2025-06-26 20:55:06,450 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:06,453 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:06,453 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:06,455 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: lawyer@test.com
+2025-06-26 20:55:06,639 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:06,642 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 201 | user: lawyer@test.com
+2025-06-26 20:55:07,005 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/1/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,008 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/1/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:07,098 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,100 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 201 | user: admin@test.com
+2025-06-26 20:55:07,190 | INFO | legal_backend.api | type: REQUEST | method: DELETE | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,192 | INFO | legal_backend.api | type: RESPONSE | method: DELETE | path: /api/clients/1/ | status: 204 | user: admin@test.com
+2025-06-26 20:55:07,282 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,284 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/1/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:07,374 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,375 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:07,465 | INFO | legal_backend.api | type: REQUEST | method: PATCH | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,467 | INFO | legal_backend.api | type: RESPONSE | method: PATCH | path: /api/clients/1/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:07,558 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,561 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/lawyers/ | status: 201 | user: admin2@test.com
+2025-06-26 20:55:07,653 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,655 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin2@test.com
+2025-06-26 20:55:07,746 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/1/monthly_billing/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,748 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/1/monthly_billing/ | status: 200 | user: admin2@test.com
+2025-06-26 20:55:07,840 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,844 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/mandates/ | status: 201 | user: admin3@test.com
+2025-06-26 20:55:07,935 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:07,942 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin3@test.com
+2025-06-26 20:55:08,033 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/1/summary/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:08,037 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/1/summary/ | status: 200 | user: admin3@test.com
+2025-06-26 20:55:08,127 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:08,129 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 201 | user: admin4@test.com
+2025-06-26 20:55:08,220 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:08,223 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin4@test.com
+2025-06-26 20:55:08,314 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_from': ['2025-06-19']}
+2025-06-26 20:55:08,317 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin4@test.com
+2025-06-26 20:55:08,408 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:08,410 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 400 | user: admin4@test.com | response_body: {'non_field_errors': [ErrorDetail(string='The selected lawyer is not assigned to this mandate.', code='invalid')]}
+2025-06-26 20:55:08,500 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Apple']}
+2025-06-26 20:55:08,502 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin4@test.com
+2025-06-26 20:55:08,502 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['banana.com']}
+2025-06-26 20:55:08,504 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin4@test.com
+2025-06-26 20:55:08,595 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['hourly_rate']}
+2025-06-26 20:55:08,596 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 20:55:08,687 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Alice']}
+2025-06-26 20:55:08,689 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 20:55:08,689 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['bob@law.com']}
+2025-06-26 20:55:08,690 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 20:55:08,782 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['active'], 'due_date_from': ['2025-07-16']}
+2025-06-26 20:55:08,786 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:08,877 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['active']}
+2025-06-26 20:55:08,883 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:08,974 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'due_date_from': ['2025-07-16']}
+2025-06-26 20:55:08,978 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:08,979 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'due_date_to': ['2025-06-25']}
+2025-06-26 20:55:08,984 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,075 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['true']}
+2025-06-26 20:55:09,079 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,080 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['false']}
+2025-06-26 20:55:09,084 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,085 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['1']}
+2025-06-26 20:55:09,090 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,181 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['inactive']}
+2025-06-26 20:55:09,186 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,277 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['overdue']}
+2025-06-26 20:55:09,281 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,372 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['name']}
+2025-06-26 20:55:09,380 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,380 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['-due_date']}
+2025-06-26 20:55:09,388 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,480 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Future']}
+2025-06-26 20:55:09,486 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,486 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Overdue']}
+2025-06-26 20:55:09,491 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,492 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Test Client']}
+2025-06-26 20:55:09,501 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:55:09,593 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_from': ['2025-06-19']}
+2025-06-26 20:55:09,598 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:55:09,598 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_to': ['2025-06-19']}
+2025-06-26 20:55:09,601 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:55:09,693 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'lawyer': ['1']}
+2025-06-26 20:55:09,696 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:55:09,788 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'mandate': ['1']}
+2025-06-26 20:55:09,792 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:55:09,883 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['hours']}
+2025-06-26 20:55:09,886 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:55:09,977 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Today']}
+2025-06-26 20:55:09,980 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:55:11,359 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:11,362 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:55:11,542 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:11,543 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:55:11,725 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:11,726 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:55:11,907 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:11,908 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 20:55:12,087 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:12,088 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:55:13,170 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:13,171 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:55:13,267 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:13,359 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 20:55:13,449 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:13,541 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:55:13,636 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:13,728 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:55:13,728 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:55:13,731 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 20:56:27,648 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:27,742 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 20:56:27,921 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,018 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:56:28,198 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/profile/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,198 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/profile/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:56:28,198 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/profile/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,214 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/profile/ | status: 200 | user: lawyer@test.com
+2025-06-26 20:56:28,394 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,394 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:56:28,395 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,395 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 403 | user: lawyer@test.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 20:56:28,395 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,493 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 201 | user: admin@test.com
+2025-06-26 20:56:28,675 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,675 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 403 | user: lawyer@test.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 20:56:28,676 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,677 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 201 | user: admin@test.com
+2025-06-26 20:56:28,858 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,858 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:56:28,858 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,863 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:28,863 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:28,864 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: lawyer@test.com
+2025-06-26 20:56:29,044 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:29,047 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:29,047 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:29,048 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: lawyer@test.com
+2025-06-26 20:56:29,229 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:29,231 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 201 | user: lawyer@test.com
+2025-06-26 20:56:29,592 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/1/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:29,596 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/1/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:29,687 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:29,688 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 201 | user: admin@test.com
+2025-06-26 20:56:29,778 | INFO | legal_backend.api | type: REQUEST | method: DELETE | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:29,780 | INFO | legal_backend.api | type: RESPONSE | method: DELETE | path: /api/clients/1/ | status: 204 | user: admin@test.com
+2025-06-26 20:56:29,870 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:29,871 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/1/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:29,962 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:29,964 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:30,054 | INFO | legal_backend.api | type: REQUEST | method: PATCH | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,055 | INFO | legal_backend.api | type: RESPONSE | method: PATCH | path: /api/clients/1/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:30,147 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,148 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/lawyers/ | status: 201 | user: admin2@test.com
+2025-06-26 20:56:30,238 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,240 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin2@test.com
+2025-06-26 20:56:30,331 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/1/monthly_billing/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,333 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/1/monthly_billing/ | status: 200 | user: admin2@test.com
+2025-06-26 20:56:30,424 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,428 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/mandates/ | status: 201 | user: admin3@test.com
+2025-06-26 20:56:30,519 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,526 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin3@test.com
+2025-06-26 20:56:30,618 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/1/summary/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,622 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/1/summary/ | status: 200 | user: admin3@test.com
+2025-06-26 20:56:30,713 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,715 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 201 | user: admin4@test.com
+2025-06-26 20:56:30,805 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,807 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin4@test.com
+2025-06-26 20:56:30,898 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_from': ['2025-06-19']}
+2025-06-26 20:56:30,901 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin4@test.com
+2025-06-26 20:56:30,992 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:30,994 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 400 | user: admin4@test.com | response_body: {'non_field_errors': [ErrorDetail(string='The selected lawyer is not assigned to this mandate.', code='invalid')]}
+2025-06-26 20:56:31,085 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Apple']}
+2025-06-26 20:56:31,087 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin4@test.com
+2025-06-26 20:56:31,087 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['banana.com']}
+2025-06-26 20:56:31,089 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin4@test.com
+2025-06-26 20:56:31,179 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['hourly_rate']}
+2025-06-26 20:56:31,181 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 20:56:31,272 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Alice']}
+2025-06-26 20:56:31,273 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 20:56:31,274 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['bob@law.com']}
+2025-06-26 20:56:31,276 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 20:56:31,367 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['active'], 'due_date_from': ['2025-07-16']}
+2025-06-26 20:56:31,370 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,462 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['active']}
+2025-06-26 20:56:31,468 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,559 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'due_date_from': ['2025-07-16']}
+2025-06-26 20:56:31,563 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,564 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'due_date_to': ['2025-06-25']}
+2025-06-26 20:56:31,568 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,661 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['true']}
+2025-06-26 20:56:31,667 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,667 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['false']}
+2025-06-26 20:56:31,672 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,673 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['1']}
+2025-06-26 20:56:31,677 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,769 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['inactive']}
+2025-06-26 20:56:31,775 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,866 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['overdue']}
+2025-06-26 20:56:31,870 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,962 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['name']}
+2025-06-26 20:56:31,970 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:31,971 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['-due_date']}
+2025-06-26 20:56:31,978 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:32,069 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Future']}
+2025-06-26 20:56:32,075 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:32,075 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Overdue']}
+2025-06-26 20:56:32,081 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:32,081 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Test Client']}
+2025-06-26 20:56:32,090 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 20:56:32,182 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_from': ['2025-06-19']}
+2025-06-26 20:56:32,185 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:56:32,185 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_to': ['2025-06-19']}
+2025-06-26 20:56:32,188 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:56:32,280 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'lawyer': ['1']}
+2025-06-26 20:56:32,284 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:56:32,376 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'mandate': ['1']}
+2025-06-26 20:56:32,380 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:56:32,472 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['hours']}
+2025-06-26 20:56:32,475 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:56:32,567 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Today']}
+2025-06-26 20:56:32,570 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 20:56:33,959 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:33,963 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:56:34,143 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:34,145 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:56:34,326 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:34,328 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:56:34,509 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:34,509 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 20:56:34,692 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:34,692 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:56:35,781 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:35,782 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:56:35,880 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:35,973 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 20:56:36,064 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:36,156 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:56:36,248 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:36,347 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:56:36,347 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:56:36,350 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 20:57:00,084 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:00,182 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 20:57:00,296 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:00,428 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:57:00,521 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:00,618 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 20:57:00,618 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:00,622 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 20:57:38,212 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:38,215 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:57:38,404 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:38,405 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:57:38,590 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:38,594 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 20:57:38,775 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:38,776 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 20:57:38,956 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:38,957 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 20:57:40,041 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 20:57:40,043 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:05:27,270 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:27,368 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 21:05:27,464 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:27,592 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:05:27,684 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:27,776 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:05:27,777 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:27,779 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 21:05:28,557 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:28,560 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:05:28,741 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:28,743 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:05:28,923 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:28,925 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:05:29,105 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:29,106 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:05:29,285 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:29,285 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:05:29,918 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:29,919 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:05:30,012 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:30,013 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:05:30,376 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:05:30,377 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:12:46,210 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:46,332 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 21:12:46,426 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:46,541 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:12:46,632 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:46,724 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:12:46,725 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:46,727 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 21:12:47,459 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:47,463 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:12:47,645 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:47,646 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:12:47,827 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:47,829 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:12:48,012 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:48,013 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:12:48,234 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:48,234 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:12:48,867 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:48,868 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:12:48,961 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:48,963 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:12:49,144 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:49,145 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:12:49,146 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:49,146 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:12:49,325 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:12:49,327 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:17:34,762 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:34,862 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 21:17:34,954 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:35,068 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:17:35,160 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:35,255 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:17:35,256 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:35,258 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 21:17:35,990 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:35,994 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:17:36,175 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:36,177 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:17:36,359 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:36,361 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:17:36,551 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:36,552 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:17:37,048 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:37,048 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:17:37,693 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:37,694 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:17:37,785 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:37,787 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:17:37,969 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:37,970 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:17:37,971 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:37,971 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:17:38,157 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:17:38,159 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:31:55,585 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:55,685 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 21:31:55,780 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:55,903 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:31:55,994 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:56,086 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:31:56,086 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:56,088 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 21:31:56,819 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:56,823 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:31:57,004 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:57,006 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:31:57,186 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:57,188 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:31:57,368 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:57,368 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:31:57,548 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:57,548 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:31:57,640 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:57,644 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:31:57,734 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:57,736 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:31:57,916 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:57,918 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:31:57,918 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:57,919 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:31:58,100 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:31:58,102 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:32:32,739 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | body: {'email': 'sarah.wilson@lawfirm.com', 'password': '***REDACTED***'}
+2025-06-26 21:32:32,876 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:32:37,881 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/current-user/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3
+2025-06-26 21:32:37,890 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/current-user/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 21:33:51,102 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-06-26 21:33:51,144 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/login/ | status: 405 | user: anonymous | response_body: {'detail': ErrorDetail(string='Method "GET" not allowed.', code='method_not_allowed')}
+2025-06-26 21:34:18,018 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-06-26 21:34:18,139 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:34:50,838 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/current-user/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+2025-06-26 21:34:50,851 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/current-user/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:35:19,919 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3
+2025-06-26 21:35:19,946 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 21:35:34,796 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | body: {'name': 'New Tech Startup Inc.', 'email': 'contact@newtechstartup.com', 'phone': '555-0199', 'address': '456 Innovation Drive, Silicon Valley, CA 94000'}
+2025-06-26 21:35:34,813 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 201 | user: sarah.wilson@lawfirm.com
+2025-06-26 21:35:42,064 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/11/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3
+2025-06-26 21:35:42,075 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/11/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 21:35:48,150 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/11/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3
+2025-06-26 21:35:48,178 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/11/mandates/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 21:35:54,217 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3
+2025-06-26 21:35:54,236 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 21:36:03,215 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/13/monthly_billing/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | query_params: {'month': ['6'], 'year': ['2025']}
+2025-06-26 21:36:03,229 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/13/monthly_billing/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 21:36:18,149 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | query_params: {'status': ['overdue']}
+2025-06-26 21:36:18,169 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: sarah.wilson@lawfirm.com
+2025-06-26 21:38:33,636 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:33,730 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 21:38:33,909 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,020 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:38:34,225 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/profile/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,225 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/profile/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:38:34,226 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /auth/profile/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,227 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /auth/profile/ | status: 200 | user: lawyer@test.com
+2025-06-26 21:38:34,408 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,408 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:38:34,409 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,409 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 403 | user: lawyer@test.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:38:34,409 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/register/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,507 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/register/ | status: 201 | user: admin@test.com
+2025-06-26 21:38:34,690 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,690 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 403 | user: lawyer@test.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:38:34,691 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,692 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 201 | user: admin@test.com
+2025-06-26 21:38:34,872 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,872 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:38:34,873 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,877 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:34,878 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:34,879 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: lawyer@test.com
+2025-06-26 21:38:35,059 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:35,062 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:35,063 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:35,064 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: lawyer@test.com
+2025-06-26 21:38:35,248 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:35,251 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 201 | user: lawyer@test.com
+2025-06-26 21:38:35,611 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/1/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:35,614 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/1/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:35,706 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:35,708 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/clients/ | status: 201 | user: admin@test.com
+2025-06-26 21:38:35,799 | INFO | legal_backend.api | type: REQUEST | method: DELETE | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:35,800 | INFO | legal_backend.api | type: RESPONSE | method: DELETE | path: /api/clients/1/ | status: 204 | user: admin@test.com
+2025-06-26 21:38:35,890 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:35,892 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/1/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:35,982 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:35,984 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:36,076 | INFO | legal_backend.api | type: REQUEST | method: PATCH | path: /api/clients/1/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,080 | INFO | legal_backend.api | type: RESPONSE | method: PATCH | path: /api/clients/1/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:36,171 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,172 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/lawyers/ | status: 201 | user: admin2@test.com
+2025-06-26 21:38:36,263 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,265 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin2@test.com
+2025-06-26 21:38:36,361 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/1/monthly_billing/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,363 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/1/monthly_billing/ | status: 200 | user: admin2@test.com
+2025-06-26 21:38:36,457 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,461 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/mandates/ | status: 201 | user: admin3@test.com
+2025-06-26 21:38:36,553 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,560 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin3@test.com
+2025-06-26 21:38:36,654 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/1/summary/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,658 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/1/summary/ | status: 200 | user: admin3@test.com
+2025-06-26 21:38:36,751 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,753 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 201 | user: admin4@test.com
+2025-06-26 21:38:36,844 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:36,846 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin4@test.com
+2025-06-26 21:38:36,938 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_from': ['2025-06-19']}
+2025-06-26 21:38:36,941 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin4@test.com
+2025-06-26 21:38:37,032 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:37,034 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /api/time-entries/ | status: 400 | user: admin4@test.com | response_body: {'non_field_errors': [ErrorDetail(string='The selected lawyer is not assigned to this mandate.', code='invalid')]}
+2025-06-26 21:38:37,125 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Apple']}
+2025-06-26 21:38:37,126 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin4@test.com
+2025-06-26 21:38:37,127 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/clients/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['banana.com']}
+2025-06-26 21:38:37,128 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/clients/ | status: 200 | user: admin4@test.com
+2025-06-26 21:38:37,218 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['hourly_rate']}
+2025-06-26 21:38:37,220 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 21:38:37,311 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Alice']}
+2025-06-26 21:38:37,313 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 21:38:37,313 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/lawyers/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['bob@law.com']}
+2025-06-26 21:38:37,315 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/lawyers/ | status: 200 | user: admin3@test.com
+2025-06-26 21:38:37,406 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['active'], 'due_date_from': ['2025-07-16']}
+2025-06-26 21:38:37,409 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,500 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['active']}
+2025-06-26 21:38:37,506 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,597 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'due_date_from': ['2025-07-16']}
+2025-06-26 21:38:37,600 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,601 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'due_date_to': ['2025-06-25']}
+2025-06-26 21:38:37,606 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,698 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['true']}
+2025-06-26 21:38:37,704 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,705 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['false']}
+2025-06-26 21:38:37,710 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,711 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'is_active': ['1']}
+2025-06-26 21:38:37,715 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,807 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['inactive']}
+2025-06-26 21:38:37,813 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,904 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'status': ['overdue']}
+2025-06-26 21:38:37,908 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:37,999 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['name']}
+2025-06-26 21:38:38,008 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:38,008 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['-due_date']}
+2025-06-26 21:38:38,016 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:38,109 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Future']}
+2025-06-26 21:38:38,115 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:38,116 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Overdue']}
+2025-06-26 21:38:38,121 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:38,122 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/mandates/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Test Client']}
+2025-06-26 21:38:38,131 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/mandates/ | status: 200 | user: admin@test.com
+2025-06-26 21:38:38,223 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_from': ['2025-06-19']}
+2025-06-26 21:38:38,226 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 21:38:38,227 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'date_to': ['2025-06-19']}
+2025-06-26 21:38:38,229 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 21:38:38,322 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'lawyer': ['1']}
+2025-06-26 21:38:38,325 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 21:38:38,416 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'mandate': ['1']}
+2025-06-26 21:38:38,421 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 21:38:38,512 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'ordering': ['hours']}
+2025-06-26 21:38:38,515 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 21:38:38,605 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown | query_params: {'search': ['Today']}
+2025-06-26 21:38:38,609 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: admin2@test.com
+2025-06-26 21:38:39,989 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:39,993 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:38:40,173 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:40,175 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:38:40,355 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:40,357 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:38:40,537 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:40,538 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:38:40,717 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:40,718 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 401 | user: anonymous | response_body: {'detail': ErrorDetail(string='Authentication credentials were not provided.', code='not_authenticated')}
+2025-06-26 21:38:40,808 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:40,811 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:38:40,903 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:40,905 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:38:41,084 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:41,087 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:38:41,087 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:41,087 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 403 | user: regular@lawyer.com | response_body: {'detail': ErrorDetail(string='You do not have permission to perform this action.', code='permission_denied')}
+2025-06-26 21:38:41,267 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /monitoring/dashboard/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:41,269 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /monitoring/dashboard/ | status: 200 | user: admin@lawyer.com
+2025-06-26 21:38:41,369 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:41,460 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 400 | user: anonymous | response_body: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]}
+2025-06-26 21:38:41,550 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:41,774 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:38:41,966 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/login/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:42,063 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/login/ | status: 200 | user: anonymous
+2025-06-26 21:38:42,064 | INFO | legal_backend.api | type: REQUEST | method: POST | path: /auth/logout/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: unknown
+2025-06-26 21:38:42,066 | INFO | legal_backend.api | type: RESPONSE | method: POST | path: /auth/logout/ | status: 200 | user: anonymous
+2025-06-26 21:39:38,949 | INFO | legal_backend.api | type: REQUEST | method: GET | path: /api/time-entries/ | user: anonymous | role: anonymous | ip: 127.0.0.1 | user_agent: PostmanRuntime/7.37.3 | query_params: {'date_from': ['2025-06-01'], 'date_to': ['2025-06-30']}
+2025-06-26 21:39:38,969 | INFO | legal_backend.api | type: RESPONSE | method: GET | path: /api/time-entries/ | status: 200 | user: sarah.wilson@lawfirm.com

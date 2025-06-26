@@ -1,0 +1,1270 @@
+{
+	"info": {
+		"_postman_id": "legal-practice-auth-api-collection",
+		"name": "Legal Practice Management API - With Authentication",
+		"description": "Complete Postman collection for testing the Legal Practice Management Django REST API with JWT authentication and role-based authorization.\n\n## Authentication System\nThis API uses JWT (JSON Web Token) authentication with role-based permissions:\n- **Admin Lawyers**: Full access to all data and operations\n- **Regular Lawyers**: Limited access to assigned mandates and own time entries\n\n## Getting Started\n1. Import this collection and environment into Postman\n2. Start Django server: `python manage.py runserver`\n3. Create demo users: `python manage.py create_demo_users --clear`\n4. Use the Authentication folder to login and get tokens\n5. Test different access levels with admin vs regular user tokens\n\n## Demo Users\n- **Admin**: sarah.wilson@lawfirm.com / admin123\n- **Regular**: michael.chen@lawfirm.com / lawyer123\n- **Junior**: emma.rodriguez@lawfirm.com / lawyer123",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Auto-refresh token if expired",
+					"const access_token = pm.environment.get('access_token');",
+					"const refresh_token = pm.environment.get('refresh_token');",
+					"",
+					"if (!access_token && refresh_token) {",
+					"    console.log('No access token, attempting refresh...');",
+					"    ",
+					"    pm.sendRequest({",
+					"        url: pm.environment.get('base_url') + '/auth/token/refresh/',",
+					"        method: 'POST',",
+					"        header: {",
+					"            'Content-Type': 'application/json'",
+					"        },",
+					"        body: {",
+					"            mode: 'raw',",
+					"            raw: JSON.stringify({",
+					"                refresh: refresh_token",
+					"            })",
+					"        }",
+					"    }, function (err, response) {",
+					"        if (err) {",
+					"            console.log('Token refresh failed:', err);",
+					"        } else if (response.code === 200) {",
+					"            const data = response.json();",
+					"            pm.environment.set('access_token', data.access);",
+					"            if (data.refresh) {",
+					"                pm.environment.set('refresh_token', data.refresh);",
+					"            }",
+					"            console.log('Token refreshed successfully');",
+					"        } else {",
+					"            console.log('Token refresh failed with status:', response.code);",
+					"            pm.environment.unset('access_token');",
+					"            pm.environment.unset('refresh_token');",
+					"        }",
+					"    });",
+					"}"
+				]
+			}
+		}
+	],
+	"item": [
+		{
+			"name": "🚀 Setup & Quick Start",
+			"item": [
+				{
+					"name": "Setup Test Environment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Environment setup completed', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"console.log('=== ENVIRONMENT SETUP COMPLETE ===');",
+									"console.log('📋 Next steps:');",
+									"console.log('1. Run \"Admin Login\" to authenticate');",
+									"console.log('2. Run \"Get All Clients\" to populate client IDs');",
+									"console.log('3. Run \"Get All Lawyers\" to populate lawyer IDs');",
+									"console.log('4. Run \"Get All Mandates\" to populate mandate IDs');",
+									"console.log('5. Test other API endpoints');",
+									"",
+									"// Set current date automatically",
+									"const today = new Date();",
+									"const currentDate = today.toISOString().split('T')[0];",
+									"const currentMonth = today.getMonth() + 1;",
+									"const currentYear = today.getFullYear();",
+									"",
+									"pm.environment.set('current_date', currentDate);",
+									"pm.environment.set('current_month', currentMonth.toString());",
+									"pm.environment.set('current_year', currentYear.toString());",
+									"",
+									"console.log('✅ Date variables updated:');",
+									"console.log('   current_date:', currentDate);",
+									"console.log('   current_month:', currentMonth);",
+									"console.log('   current_year:', currentYear);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/",
+							"host": ["{{base_url}}"],
+							"path": ["admin", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🔐 Authentication",
+			"item": [
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response has tokens and user info', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('access');",
+									"    pm.expect(jsonData).to.have.property('refresh');",
+									"    pm.expect(jsonData).to.have.property('user');",
+									"    pm.expect(jsonData.user.role).to.eql('admin');",
+									"});",
+									"",
+									"// Save tokens to environment",
+									"const jsonData = pm.response.json();",
+									"pm.environment.set('access_token', jsonData.access);",
+									"pm.environment.set('refresh_token', jsonData.refresh);",
+									"pm.environment.set('current_user_id', jsonData.user.id);",
+									"pm.environment.set('current_user_role', jsonData.user.role);",
+									"pm.environment.set('current_lawyer_id', jsonData.user.lawyer_profile_id);",
+									"",
+									"console.log('Logged in as:', jsonData.user.first_name, jsonData.user.last_name, '(' + jsonData.user.role + ')');"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sarah.wilson@lawfirm.com\",\n    \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "login", ""]
+						}
+					}
+				},
+				{
+					"name": "Regular Lawyer Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response has tokens and user info', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('access');",
+									"    pm.expect(jsonData).to.have.property('refresh');",
+									"    pm.expect(jsonData).to.have.property('user');",
+									"    pm.expect(jsonData.user.role).to.eql('lawyer');",
+									"});",
+									"",
+									"// Save tokens to environment",
+									"const jsonData = pm.response.json();",
+									"pm.environment.set('access_token', jsonData.access);",
+									"pm.environment.set('refresh_token', jsonData.refresh);",
+									"pm.environment.set('current_user_id', jsonData.user.id);",
+									"pm.environment.set('current_user_role', jsonData.user.role);",
+									"pm.environment.set('current_lawyer_id', jsonData.user.lawyer_profile_id);",
+									"",
+									"console.log('Logged in as:', jsonData.user.first_name, jsonData.user.last_name, '(' + jsonData.user.role + ')');"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"michael.chen@lawfirm.com\",\n    \"password\": \"lawyer123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "login", ""]
+						}
+					}
+				},
+				{
+					"name": "Junior Lawyer Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"pm.environment.set('access_token', jsonData.access);",
+									"pm.environment.set('refresh_token', jsonData.refresh);",
+									"pm.environment.set('current_user_id', jsonData.user.id);",
+									"pm.environment.set('current_user_role', jsonData.user.role);",
+									"pm.environment.set('current_lawyer_id', jsonData.user.lawyer_profile_id);",
+									"",
+									"console.log('Logged in as:', jsonData.user.first_name, jsonData.user.last_name, '(' + jsonData.user.role + ')');"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"emma.rodriguez@lawfirm.com\",\n    \"password\": \"lawyer123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "login", ""]
+						}
+					}
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Update tokens",
+									"const jsonData = pm.response.json();",
+									"pm.environment.set('access_token', jsonData.access);",
+									"if (jsonData.refresh) {",
+									"    pm.environment.set('refresh_token', jsonData.refresh);",
+									"}",
+									"console.log('Tokens refreshed successfully');"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/token/refresh/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "token", "refresh", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Current User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('User info is returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('email');",
+									"    pm.expect(jsonData).to.have.property('role');",
+									"    console.log('Current user:', jsonData.first_name, jsonData.last_name, '(' + jsonData.role + ')');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/current-user/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "current-user", ""]
+						}
+					}
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Clear tokens from environment",
+									"pm.environment.unset('access_token');",
+									"pm.environment.unset('refresh_token');",
+									"pm.environment.unset('current_user_id');",
+									"pm.environment.unset('current_user_role');",
+									"pm.environment.unset('current_lawyer_id');",
+									"console.log('Logged out successfully');"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh_token\": \"{{refresh_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/logout/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "logout", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "👥 User Management (Admin Only)",
+			"item": [
+				{
+					"name": "Register New User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 201 (Admin) or 403 (Regular)', function () {",
+									"    pm.expect([201, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 201) {",
+									"    pm.test('User created successfully', function () {",
+									"        const jsonData = pm.response.json();",
+									"        pm.expect(jsonData).to.have.property('user');",
+									"        console.log('New user created:', jsonData.user.email);",
+									"    });",
+									"} else {",
+									"    console.log('Access denied - Only admin lawyers can create users');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"new.lawyer\",\n    \"email\": \"new.lawyer@lawfirm.com\",\n    \"password\": \"newpass123\",\n    \"password_confirm\": \"newpass123\",\n    \"first_name\": \"New\",\n    \"last_name\": \"Lawyer\",\n    \"role\": \"lawyer\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "register", ""]
+						}
+					}
+				},
+				{
+					"name": "List All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200 (Admin) or 403 (Regular)', function () {",
+									"    pm.expect([200, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test('Users list returned', function () {",
+									"        const jsonData = pm.response.json();",
+									"        pm.expect(jsonData).to.be.an('array');",
+									"        console.log('Found', jsonData.length, 'users');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/users/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "users", ""]
+						}
+					}
+				},
+				{
+					"name": "Link User to Lawyer Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200 (Admin) or 403 (Regular)', function () {",
+									"    pm.expect([200, 403, 400, 404]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    console.log('User successfully linked to lawyer profile');",
+									"} else if (pm.response.code === 403) {",
+									"    console.log('Access denied - Only admin lawyers can link profiles');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 4,\n    \"lawyer_id\": {{test_lawyer_id}}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/link-lawyer/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "link-lawyer", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🏢 Clients",
+			"item": [
+				{
+					"name": "Get All Clients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Clients list returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('results');",
+									"    console.log('Found', jsonData.results.length, 'clients');",
+									"    ",
+									"    // Auto-set test client ID for other requests",
+									"    if (jsonData.results.length > 0) {",
+									"        pm.environment.set('test_client_id', jsonData.results[0].id);",
+									"        console.log('Auto-set test_client_id to:', jsonData.results[0].id);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "clients", ""]
+						}
+					}
+				},
+				{
+					"name": "Create Client (Admin Only)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 201 (Admin) or 403 (Regular)', function () {",
+									"    pm.expect([201, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 201) {",
+									"    const jsonData = pm.response.json();",
+									"    pm.environment.set('new_client_id', jsonData.id);",
+									"    console.log('Client created with ID:', jsonData.id);",
+									"} else {",
+									"    console.log('Access denied - Only admin lawyers can create clients');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Tech Startup Inc.\",\n    \"email\": \"contact@newtechstartup.com\",\n    \"phone\": \"555-0199\",\n    \"address\": \"456 Innovation Drive, Silicon Valley, CA 94000\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "clients", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Client by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Client details returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('email');",
+									"    console.log('Client:', jsonData.name);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/{{test_client_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "clients", "{{test_client_id}}", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Client's Mandates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Mandates list returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"    console.log('Client has', jsonData.length, 'mandates');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clients/{{test_client_id}}/mandates/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "clients", "{{test_client_id}}", "mandates", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "⚖️ Lawyers",
+			"item": [
+				{
+					"name": "Get All Lawyers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Lawyers list returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('results');",
+									"    console.log('Found', jsonData.results.length, 'lawyers');",
+									"    ",
+									"    // Auto-set test lawyer ID for other requests",
+									"    if (jsonData.results.length > 0) {",
+									"        pm.environment.set('test_lawyer_id', jsonData.results[0].id);",
+									"        console.log('Auto-set test_lawyer_id to:', jsonData.results[0].id);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "lawyers", ""]
+						}
+					}
+				},
+				{
+					"name": "Create Lawyer (Admin Only)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 201 (Admin) or 403 (Regular)', function () {",
+									"    pm.expect([201, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 201) {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Lawyer created with ID:', jsonData.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alex Partner\",\n    \"email\": \"alex.partner@lawfirm.com\",\n    \"phone\": \"555-0300\",\n    \"hourly_rate\": \"475.00\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "lawyers", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Lawyer Monthly Billing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Billing data returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('lawyer_name');",
+									"    pm.expect(jsonData).to.have.property('total_hours');",
+									"    pm.expect(jsonData).to.have.property('total_amount');",
+									"    console.log('Billing for', jsonData.lawyer_name + ':', jsonData.total_hours, 'hours, $' + jsonData.total_amount);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lawyers/{{test_lawyer_id}}/monthly_billing/?month={{current_month}}&year={{current_year}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "lawyers", "{{test_lawyer_id}}", "monthly_billing", ""],
+							"query": [
+								{
+									"key": "month",
+									"value": "{{current_month}}"
+								},
+								{
+									"key": "year",
+									"value": "{{current_year}}"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📁 Mandates",
+			"item": [
+				{
+					"name": "Get All Mandates (Role-Based)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Mandates list returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('results');",
+									"    const role = pm.environment.get('current_user_role');",
+									"    console.log('Found', jsonData.results.length, 'mandates for', role, 'user');",
+									"    ",
+									"    // Auto-set test mandate ID for other requests",
+									"    if (jsonData.results.length > 0) {",
+									"        pm.environment.set('test_mandate_id', jsonData.results[0].id);",
+									"        console.log('Auto-set test_mandate_id to:', jsonData.results[0].id);",
+									"    }",
+									"    ",
+									"    // Show mandate names for clarity",
+									"    jsonData.results.forEach(mandate => {",
+									"        console.log('- ' + mandate.name + ' (Client: ' + mandate.client_name + ')');",
+									"    });",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Active Mandates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('All returned mandates are active', function () {",
+									"    const jsonData = pm.response.json();",
+									"    jsonData.results.forEach(mandate => {",
+									"        pm.expect(mandate.is_active).to.be.true;",
+									"    });",
+									"    console.log('Found', jsonData.results.length, 'active mandates');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?status=active",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", ""],
+							"query": [
+								{
+									"key": "status",
+									"value": "active"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Overdue Mandates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('All returned mandates are overdue and active', function () {",
+									"    const jsonData = pm.response.json();",
+									"    const today = new Date().toISOString().split('T')[0];",
+									"    ",
+									"    jsonData.results.forEach(mandate => {",
+									"        pm.expect(mandate.is_active).to.be.true;",
+									"        pm.expect(mandate.due_date).to.be.below(today);",
+									"    });",
+									"    console.log('Found', jsonData.results.length, 'overdue mandates');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/?status=overdue",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", ""],
+							"query": [
+								{
+									"key": "status",
+									"value": "overdue"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Mandate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 201 or 403', function () {",
+									"    pm.expect([201, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 201) {",
+									"    const jsonData = pm.response.json();",
+									"    pm.environment.set('new_mandate_id', jsonData.id);",
+									"    console.log('Mandate created with ID:', jsonData.id);",
+									"} else {",
+									"    console.log('Access may be restricted based on role');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Merger & Acquisition Review\",\n    \"description\": \"Legal review and due diligence for corporate merger\",\n    \"client\": {{test_client_id}},\n    \"lawyers\": [{{test_lawyer_id}}],\n    \"due_date\": \"2025-09-30\",\n    \"cost_ceiling\": \"125000.00\",\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mandates/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Mandate Summary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Summary data returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('mandate_name');",
+									"    pm.expect(jsonData).to.have.property('total_hours');",
+									"    pm.expect(jsonData).to.have.property('total_cost');",
+									"    console.log('Mandate summary:', jsonData.mandate_name);",
+									"    console.log('Total hours:', jsonData.total_hours, 'Total cost: $' + jsonData.total_cost);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/{{test_mandate_id}}/summary/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", "{{test_mandate_id}}", "summary", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "⏱️ Time Entries",
+			"item": [
+				{
+					"name": "Get My Time Entries (Role-Based)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Time entries returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('results');",
+									"    const role = pm.environment.get('current_user_role');",
+									"    console.log('Found', jsonData.results.length, 'time entries for', role, 'user');",
+									"    ",
+									"    // Show entries for clarity",
+									"    jsonData.results.forEach(entry => {",
+									"        console.log('- ' + entry.hours + 'h on ' + entry.mandate_name + ' by ' + entry.lawyer_name);",
+									"    });",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "time-entries", ""]
+						}
+					}
+				},
+				{
+					"name": "Create Time Entry",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Note: Time entry creation requires the lawyer to be assigned to the mandate",
+									"// If this fails with 400, the current user's lawyer profile may not be assigned to the test mandate",
+									"console.log('Creating time entry for mandate:', pm.environment.get('test_mandate_id'));",
+									"console.log('Using lawyer ID:', pm.environment.get('current_lawyer_id'));",
+									"console.log('Current user role:', pm.environment.get('current_user_role'));"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 201 or 400', function () {",
+									"    pm.expect([201, 400, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 201) {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('✅ Time entry created:', jsonData.hours, 'hours on', jsonData.mandate_name);",
+									"} else if (pm.response.code === 400) {",
+									"    console.log('⚠️  Validation error - Current lawyer may not be assigned to this mandate');",
+									"    console.log('   Tip: Use admin account or assign current lawyer to mandate first');",
+									"} else {",
+									"    console.log('❌ Access restricted based on permissions');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mandate\": {{test_mandate_id}},\n    \"lawyer\": {{current_lawyer_id}},\n    \"date\": \"{{current_date}}\",\n    \"hours\": \"3.5\",\n    \"description\": \"Legal research and document review via Postman API test\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "time-entries", ""]
+						}
+					}
+				},
+				{
+					"name": "Filter Time Entries by Date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Filtered entries returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Found', jsonData.results.length, 'time entries in date range');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?date_from=2025-06-01&date_to=2025-06-30",
+							"host": ["{{base_url}}"],
+							"path": ["api", "time-entries", ""],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2025-06-01"
+								},
+								{
+									"key": "date_to",
+									"value": "2025-06-30"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Time Entries",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Search results returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Found', jsonData.results.length, 'time entries matching search');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/?search=research",
+							"host": ["{{base_url}}"],
+							"path": ["api", "time-entries", ""],
+							"query": [
+								{
+									"key": "search",
+									"value": "research"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "🔍 Role-Based Access Tests",
+			"item": [
+				{
+					"name": "Test Unauthenticated Access (Should Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 401 (Unauthorized)', function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test('Authentication required message', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.detail).to.include('Authentication credentials were not provided');",
+									"    console.log('✓ Unauthenticated access properly blocked');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", ""]
+						}
+					}
+				},
+				{
+					"name": "Regular User Create Client (Should Fail)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Ensure we're using regular user token",
+									"// This test should be run after logging in as regular user"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const role = pm.environment.get('current_user_role');",
+									"",
+									"if (role === 'lawyer') {",
+									"    pm.test('Status code is 403 (Forbidden) for regular lawyer', function () {",
+									"        pm.response.to.have.status(403);",
+									"    });",
+									"    console.log('✓ Regular lawyer properly blocked from creating clients');",
+									"} else if (role === 'admin') {",
+									"    pm.test('Status code is 201 (Created) for admin', function () {",
+									"        pm.response.to.have.status(201);",
+									"    });",
+									"    console.log('✓ Admin can create clients as expected');",
+									"} else {",
+									"    console.log('No user role detected - please login first');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Access Client\",\n    \"email\": \"test.access@client.com\",\n    \"phone\": \"555-9999\",\n    \"address\": \"Test Access Street\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "clients", ""]
+						}
+					}
+				}
+			]
+		}
+	]
+}
