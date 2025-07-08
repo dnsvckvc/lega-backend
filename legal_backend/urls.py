@@ -23,5 +23,5 @@ urlpatterns = [
     path('api/', include('core.urls')),
     path('auth/', include('authentication.urls')),
     path('monitoring/', include('monitoring.urls')),
-    path('docs/', include_docs_urls(title='Legal Practice Management API')),
+    path('docs/', include_docs_urls(title='Legal Practice Management API', public=True)),
 ]
