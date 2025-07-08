@@ -1,0 +1,954 @@
+{
+	"info": {
+		"_postman_id": "legal-practice-monitoring-api",
+		"name": "Legal Practice Management - Monitoring API",
+		"description": "Dedicated Postman collection for testing the Legal Practice Management system monitoring endpoints. This collection provides comprehensive system observability and health monitoring capabilities.\n\n## 🔐 Authentication Required\nAll monitoring endpoints require **Admin Lawyer** permissions with JWT authentication.\n\n## Getting Started\n1. Import this collection into Postman\n2. Import the environment file: `Legal_Practice_Management.postman_environment.json`\n3. Login as an admin user to get JWT tokens\n4. Use the monitoring endpoints to track system health\n\n## 📊 Monitoring Capabilities\n- **System Dashboard**: Overall statistics and metrics\n- **Log Analysis**: Multi-level logging with filtering\n- **User Activity**: Detailed user behavior tracking\n- **Health Monitoring**: System alerts and performance metrics\n- **Security Monitoring**: Authentication logs and audit trails\n\n## 🎯 Use Cases\n- System administration and maintenance\n- Performance monitoring and optimization\n- Security incident investigation\n- User behavior analysis\n- Troubleshooting and debugging\n- Compliance and audit reporting\n\n## 📝 Log Types Available\n- **General**: System-wide information logs\n- **Error**: Error logs and exceptions\n- **Performance**: Request timing and slow queries\n- **API**: API request logs with user context\n- **Authentication**: Login attempts and security events\n- **Audit**: Data modification trails and user actions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🚀 Setup & Authentication",
+			"item": [
+				{
+					"name": "Admin Login (Required First)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Automatically set tokens if login successful",
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"access_token\", jsonData.access);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh);",
+									"    console.log(\"✅ Tokens set successfully\");",
+									"    console.log(\"User:\", jsonData.user.email, \"Role:\", jsonData.user.role);",
+									"} else {",
+									"    console.log(\"❌ Login failed\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sarah.wilson@lawfirm.com\",\n    \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Login as admin user to get JWT tokens required for monitoring endpoints. Tokens are automatically saved to environment variables."
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Admin Access",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Admin access verified\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.role).to.eql(\"admin\");",
+									"    console.log(\"✅ Admin access confirmed for:\", jsonData.email);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT access token"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/current-user/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"current-user",
+								""
+							]
+						},
+						"description": "Verify that you have admin access before using monitoring endpoints."
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication setup required for monitoring endpoints. All monitoring APIs require admin lawyer permissions."
+		},
+		{
+			"name": "📊 System Dashboard",
+			"item": [
+				{
+					"name": "Get System Dashboard Stats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Dashboard stats retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('request_counts');",
+									"    pm.expect(jsonData).to.have.property('response_times');",
+									"    pm.expect(jsonData).to.have.property('user_activity');",
+									"    console.log(\"📊 Dashboard loaded successfully\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/dashboard/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"dashboard",
+								""
+							]
+						},
+						"description": "Get comprehensive system statistics including:\n- Request counts by endpoint\n- Average response times\n- User activity metrics\n- Log file information\n- System performance overview\n\n**Requires:** Admin Lawyer permissions"
+					},
+					"response": []
+				}
+			],
+			"description": "System-wide statistics and performance metrics for administrative overview."
+		},
+		{
+			"name": "📋 System Logs",
+			"item": [
+				{
+					"name": "Get All Recent Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Logs retrieved successfully\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('logs');",
+									"    console.log(\"📋 Retrieved\", jsonData.logs.length, \"log entries\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/logs/?limit=50",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"logs",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50",
+									"description": "Number of log entries to return (max 200)"
+								}
+							]
+						},
+						"description": "Get recent log entries from all log files. Returns structured log data with timestamps, levels, and messages.\n\n**Query Parameters:**\n- `limit`: Number of entries (max 200)\n- `type`: Filter by log type (see other requests)\n\n**Returns:** Parsed log entries from all system logs"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Error Logs Only",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error logs retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('logs');",
+									"    console.log(\"🚨 Retrieved\", jsonData.logs.length, \"error log entries\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/logs/?type=error&limit=25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"logs",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "error",
+									"description": "Filter for error logs only"
+								},
+								{
+									"key": "limit",
+									"value": "25",
+									"description": "Number of error entries to return"
+								}
+							]
+						},
+						"description": "Get recent error log entries only. Essential for troubleshooting system issues and identifying problems.\n\n**Use Case:** Debugging, error analysis, system health monitoring"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Authentication Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Auth logs retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('logs');",
+									"    console.log(\"🔐 Retrieved\", jsonData.logs.length, \"authentication log entries\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/logs/?type=auth&limit=30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"logs",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "auth",
+									"description": "Filter for authentication logs"
+								},
+								{
+									"key": "limit",
+									"value": "30",
+									"description": "Number of auth entries to return"
+								}
+							]
+						},
+						"description": "Get recent authentication log entries including:\n- Successful logins\n- Failed login attempts\n- Token operations\n- Security events\n\n**Use Case:** Security monitoring, user access tracking, breach investigation"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Performance Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Performance logs retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('logs');",
+									"    console.log(\"⚡ Retrieved\", jsonData.logs.length, \"performance log entries\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/logs/?type=performance&limit=25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"logs",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "performance",
+									"description": "Filter for performance logs"
+								},
+								{
+									"key": "limit",
+									"value": "25",
+									"description": "Number of performance entries to return"
+								}
+							]
+						},
+						"description": "Get recent performance log entries including:\n- Slow request alerts\n- Response time measurements\n- Performance bottlenecks\n- System resource usage\n\n**Use Case:** Performance optimization, bottleneck identification, system tuning"
+					},
+					"response": []
+				},
+				{
+					"name": "Get API Request Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"API logs retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('logs');",
+									"    console.log(\"🔗 Retrieved\", jsonData.logs.length, \"API request log entries\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/logs/?type=api&limit=40",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"logs",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "api",
+									"description": "Filter for API request logs"
+								},
+								{
+									"key": "limit",
+									"value": "40",
+									"description": "Number of API request entries to return"
+								}
+							]
+						},
+						"description": "Get recent API request log entries including:\n- Endpoint access patterns\n- User request behavior\n- Request/response details\n- API usage statistics\n\n**Use Case:** API usage analysis, user behavior tracking, endpoint optimization"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Audit Trail Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Audit logs retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('logs');",
+									"    console.log(\"📝 Retrieved\", jsonData.logs.length, \"audit log entries\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/logs/?type=audit&limit=35",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"logs",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "audit",
+									"description": "Filter for audit trail logs"
+								},
+								{
+									"key": "limit",
+									"value": "35",
+									"description": "Number of audit entries to return"
+								}
+							]
+						},
+						"description": "Get recent audit trail log entries including:\n- Data modifications (create, update, delete)\n- User actions and changes\n- Security-relevant events\n- Compliance tracking\n\n**Use Case:** Compliance reporting, data change tracking, security auditing"
+					},
+					"response": []
+				},
+				{
+					"name": "Get General System Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"General logs retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('logs');",
+									"    console.log(\"📋 Retrieved\", jsonData.logs.length, \"general log entries\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/logs/?type=general&limit=30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"logs",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "general",
+									"description": "Filter for general system logs"
+								},
+								{
+									"key": "limit",
+									"value": "30",
+									"description": "Number of general entries to return"
+								}
+							]
+						},
+						"description": "Get recent general system log entries including:\n- System startup/shutdown events\n- General application messages\n- Information-level events\n- System status updates\n\n**Use Case:** General system monitoring, startup diagnostics, information tracking"
+					},
+					"response": []
+				}
+			],
+			"description": "System logging endpoints for different log types. Essential for debugging, monitoring, and compliance."
+		},
+		{
+			"name": "👥 User Activity Analytics",
+			"item": [
+				{
+					"name": "Get User Activity - Last 7 Days",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User activity retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('user_stats');",
+									"    pm.expect(jsonData).to.have.property('daily_activity');",
+									"    console.log(\"👥 Activity data for last 7 days loaded\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/activity/?days=7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"activity",
+								""
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "7",
+									"description": "Number of days to analyze (max 30)"
+								}
+							]
+						},
+						"description": "Get user activity statistics for the last 7 days including:\n- User counts and activity levels\n- Daily activity breakdown\n- Top accessed endpoints\n- Recent user actions\n- Activity trends\n\n**Use Case:** Weekly activity review, user engagement monitoring"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Activity - Last 30 Days",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Monthly activity retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('user_stats');",
+									"    pm.expect(jsonData).to.have.property('daily_activity');",
+									"    console.log(\"👥 Monthly activity data loaded\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/activity/?days=30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"activity",
+								""
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "30",
+									"description": "Number of days to analyze (max 30)"
+								}
+							]
+						},
+						"description": "Get comprehensive user activity statistics for the last 30 days including:\n- Monthly usage patterns\n- User engagement trends\n- Peak activity periods\n- Feature usage statistics\n- Long-term behavior analysis\n\n**Use Case:** Monthly reporting, trend analysis, capacity planning"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific User Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Specific user activity retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('user_stats');",
+									"    console.log(\"👤 Individual user activity data loaded\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/activity/?days=14&user=sarah.wilson@lawfirm.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"activity",
+								""
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "14",
+									"description": "Number of days to analyze (max 30)"
+								},
+								{
+									"key": "user",
+									"value": "sarah.wilson@lawfirm.com",
+									"description": "Filter activity by specific user email"
+								}
+							]
+						},
+						"description": "Get activity statistics for a specific user over the last 14 days including:\n- Individual user behavior patterns\n- Personal usage statistics\n- Feature preferences\n- Login patterns\n- Productivity metrics\n\n**Use Case:** Individual user analysis, productivity tracking, user support\n\n**Note:** Change the email in the query parameter to analyze different users."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Week Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Current week activity retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('user_stats');",
+									"    console.log(\"📅 Current week activity data loaded\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/activity/?days=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"activity",
+								""
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "5",
+									"description": "Current work week (5 days)"
+								}
+							]
+						},
+						"description": "Get user activity statistics for the current work week (last 5 days) including:\n- Weekly productivity metrics\n- Current work patterns\n- Recent user engagement\n- Short-term trends\n\n**Use Case:** Weekly team standup metrics, current productivity assessment"
+					},
+					"response": []
+				}
+			],
+			"description": "User activity analytics and behavior tracking for administrative insights and user management."
+		},
+		{
+			"name": "🏥 System Health",
+			"item": [
+				{
+					"name": "Get System Health Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"System health retrieved\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('health_status');",
+									"    pm.expect(jsonData).to.have.property('alerts');",
+									"    console.log(\"🏥 System health status loaded\");",
+									"    ",
+									"    // Log any alerts",
+									"    if (jsonData.alerts && jsonData.alerts.length > 0) {",
+									"        console.log(\"⚠️ System alerts found:\", jsonData.alerts.length);",
+									"        jsonData.alerts.forEach(alert => {",
+									"            console.log(`- ${alert.type}: ${alert.message}`);",
+									"        });",
+									"    } else {",
+									"        console.log(\"✅ No system alerts\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/health/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"health",
+								""
+							]
+						},
+						"description": "Get comprehensive system health status including:\n\n**System Metrics:**\n- Overall health status\n- System alerts and warnings\n- Disk usage and storage health\n- Memory and performance indicators\n\n**Alert Types:**\n- Performance issues (slow requests)\n- Error rate thresholds\n- Security alerts (failed logins)\n- Resource usage warnings\n- System component status\n\n**Health Indicators:**\n- Database connectivity\n- Log file sizes and rotation\n- Recent error patterns\n- System resource utilization\n\n**Use Case:** \n- Proactive system monitoring\n- Health dashboards\n- Alert management\n- Preventive maintenance\n- System status reporting\n\n**Critical for:** Production system management and ensuring system reliability."
+					},
+					"response": []
+				}
+			],
+			"description": "System health monitoring and alerting for proactive system management and maintenance."
+		},
+		{
+			"name": "🔧 Monitoring Utilities",
+			"item": [
+				{
+					"name": "Test All Monitoring Endpoints",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This is a utility test to verify all monitoring endpoints are working",
+									"pm.test(\"Monitoring endpoint accessible\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has expected structure\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('object');",
+									"    console.log(\"✅ Endpoint test passed\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/dashboard/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"dashboard",
+								""
+							]
+						},
+						"description": "Utility endpoint to test monitoring API availability and authentication. Use this to verify your setup before running other monitoring requests.\n\n**Purpose:**\n- Verify admin authentication is working\n- Test monitoring API accessibility\n- Validate JWT token permissions\n- Confirm system is responding\n\n**Run this first** before executing other monitoring requests."
+					},
+					"response": []
+				},
+				{
+					"name": "Quick Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quick health check passed\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    ",
+									"    // Quick status check",
+									"    if (jsonData.alerts && jsonData.alerts.length > 0) {",
+									"        console.log(\"⚠️ System has\", jsonData.alerts.length, \"alerts\");",
+									"        // Don't fail test for alerts, just log them",
+									"    } else {",
+									"        console.log(\"✅ System healthy - no alerts\");",
+									"    }",
+									"});",
+									"",
+									"// Set a collection variable for quick status",
+									"var jsonData = pm.response.json();",
+									"if (jsonData.alerts && jsonData.alerts.length > 0) {",
+									"    pm.collectionVariables.set(\"system_status\", \"has_alerts\");",
+									"} else {",
+									"    pm.collectionVariables.set(\"system_status\", \"healthy\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "JWT token required - Admin only"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/health/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"health",
+								""
+							]
+						},
+						"description": "Quick system health check utility. Run this for a fast overview of system status without detailed analysis.\n\n**Returns:**\n- Basic health status\n- Alert count\n- Critical issues (if any)\n\n**Use Case:** Daily health check, status dashboard, quick system verification"
+					},
+					"response": []
+				}
+			],
+			"description": "Utility requests for testing and quick system verification."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Pre-request script to check authentication",
+					"if (!pm.environment.get(\"access_token\")) {",
+					"    console.log(\"⚠️ No access token found. Please run 'Admin Login' first.\");",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Global test script for monitoring collection",
+					"if (pm.response.code === 401) {",
+					"    console.log(\"❌ Authentication failed. Check your JWT token or run 'Admin Login' again.\");",
+					"} else if (pm.response.code === 403) {",
+					"    console.log(\"❌ Access denied. Monitoring endpoints require Admin Lawyer permissions.\");",
+					"} else if (pm.response.code >= 500) {",
+					"    console.log(\"🚨 Server error detected. Check system health and logs.\");",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "system_status",
+			"value": "unknown",
+			"type": "string"
+		}
+	]
+}

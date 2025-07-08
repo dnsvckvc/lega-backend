@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice {{ invoice.invoice_number }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .invoice-title {
+            font-size: 20px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        .invoice-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #34495e;
+        }
+        .amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .message {
+            background-color: #fff;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 20px;
+        }
+        .payment-info {
+            background-color: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">{{ company_name }}</div>
+        <div class="invoice-title">Invoice {{ invoice.invoice_number }}</div>
+    </div>
+
+    <p>Dear {{ client.name }},</p>
+
+    <p>Thank you for your business. Please find attached your invoice for the legal services provided.</p>
+
+    {% if custom_message %}
+    <div class="message">
+        <p><strong>Additional Message:</strong></p>
+        <p>{{ custom_message }}</p>
+    </div>
+    {% endif %}
+
+    <div class="invoice-details">
+        <div class="detail-row">
+            <span class="detail-label">Invoice Number:</span>
+            <span>{{ invoice.invoice_number }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Issue Date:</span>
+            <span>{{ invoice.issue_date|date:"F d, Y" }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Due Date:</span>
+            <span>{{ invoice.due_date|date:"F d, Y" }}</span>
+        </div>
+        {% if invoice.mandate %}
+        <div class="detail-row">
+            <span class="detail-label">Matter:</span>
+            <span>{{ invoice.mandate.name }}</span>
+        </div>
+        {% endif %}
+        <hr>
+        <div class="detail-row">
+            <span class="detail-label">Subtotal:</span>
+            <span>${{ invoice.subtotal|floatformat:2 }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Tax ({{ invoice.tax_rate }}%):</span>
+            <span>${{ invoice.tax_amount|floatformat:2 }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Total Amount:</span>
+            <span class="amount">${{ invoice.total_amount|floatformat:2 }}</span>
+        </div>
+    </div>
+
+    <div class="payment-info">
+        <h3>Payment Information</h3>
+        <p><strong>Payment is due by {{ invoice.due_date|date:"F d, Y" }}</strong></p>
+        <p>Please include invoice number <strong>{{ invoice.invoice_number }}</strong> with your payment.</p>
+        <p>For payment questions or to arrange payment, please contact us at {{ company_email }} or {{ company_phone }}.</p>
+    </div>
+
+    {% if invoice.notes %}
+    <div class="message">
+        <p><strong>Notes:</strong></p>
+        <p>{{ invoice.notes|linebreaks }}</p>
+    </div>
+    {% endif %}
+
+    <p>We appreciate your prompt payment. If you have any questions about this invoice, please don't hesitate to contact us.</p>
+
+    <div class="footer">
+        <p>{{ company_name }}</p>
+        <p>Email: {{ company_email }} | Phone: {{ company_phone }}</p>
+        <p>This is an automated email. Please do not reply directly to this message.</p>
+    </div>
+</body>
+</html>

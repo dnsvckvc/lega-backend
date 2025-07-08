@@ -17,6 +17,29 @@ from authentication.permissions import (
 
 
 class ClientViewSet(viewsets.ModelViewSet):
+    """
+    Client Management API
+    
+    Provides CRUD operations for legal clients. Clients are the entities that engage
+    the law firm for legal services.
+    
+    **Permissions:**
+    - **Read access:** All authenticated users
+    - **Write access:** Admin lawyers only
+    
+    **Filtering & Search:**
+    - Search by: name, email
+    - Order by: name, created_at
+    - Default ordering: alphabetical by name
+    
+    **Available Actions:**
+    - `GET /api/clients/` - List all clients
+    - `POST /api/clients/` - Create new client (admin only)
+    - `GET /api/clients/{id}/` - Retrieve client details
+    - `PUT/PATCH /api/clients/{id}/` - Update client (admin only)
+    - `DELETE /api/clients/{id}/` - Delete client (admin only)
+    - `GET /api/clients/{id}/mandates/` - Get client's mandates
+    """
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     permission_classes = [ReadOnlyOrAdmin]
@@ -27,6 +50,14 @@ class ClientViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def mandates(self, request, pk=None):
+        """
+        Get Client's Mandates
+        
+        Retrieve all mandates (legal projects) associated with this client.
+        Results are filtered based on user permissions.
+        
+        **Returns:** List of mandates for the specified client
+        """
         client = self.get_object()
         mandates = client.mandates.all()
         serializer = MandateSerializer(mandates, many=True)
@@ -34,6 +65,31 @@ class ClientViewSet(viewsets.ModelViewSet):
 
 
 class LawyerViewSet(viewsets.ModelViewSet):
+    """
+    Lawyer Management API
+    
+    Manages lawyer profiles and billing information. Lawyers are staff members
+    who provide legal services and track billable time.
+    
+    **Permissions:**
+    - **Read access:** All authenticated users
+    - **Write access:** Admin lawyers only
+    
+    **Filtering & Search:**
+    - Search by: name, email
+    - Order by: name, hourly_rate, created_at
+    - Default ordering: alphabetical by name
+    
+    **Available Actions:**
+    - `GET /api/lawyers/` - List all lawyers
+    - `POST /api/lawyers/` - Create new lawyer (admin only)
+    - `GET /api/lawyers/{id}/` - Retrieve lawyer details
+    - `PUT/PATCH /api/lawyers/{id}/` - Update lawyer (admin only)
+    - `DELETE /api/lawyers/{id}/` - Delete lawyer (admin only)
+    - `GET /api/lawyers/{id}/mandates/` - Get lawyer's mandates
+    - `GET /api/lawyers/{id}/time_entries/` - Get lawyer's time entries
+    - `GET /api/lawyers/{id}/monthly_billing/` - Get monthly billing summary
+    """
     queryset = Lawyer.objects.all()
     serializer_class = LawyerSerializer
     permission_classes = [ReadOnlyOrAdmin]
@@ -44,6 +100,14 @@ class LawyerViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def mandates(self, request, pk=None):
+        """
+        Get Lawyer's Mandates
+        
+        Retrieve all mandates assigned to this lawyer.
+        Results are filtered based on user permissions.
+        
+        **Returns:** List of mandates assigned to the specified lawyer
+        """
         lawyer = self.get_object()
         mandates = lawyer.mandates.all()
         serializer = MandateSerializer(mandates, many=True)
@@ -51,6 +115,14 @@ class LawyerViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def time_entries(self, request, pk=None):
+        """
+        Get Lawyer's Time Entries
+        
+        Retrieve all time entries recorded by this lawyer.
+        Results are filtered based on user permissions.
+        
+        **Returns:** List of time entries by the specified lawyer
+        """
         lawyer = self.get_object()
         time_entries = lawyer.time_entries.all()
         serializer = TimeEntrySerializer(time_entries, many=True)
@@ -58,6 +130,24 @@ class LawyerViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def monthly_billing(self, request, pk=None):
+        """
+        Get Lawyer's Monthly Billing Summary
+        
+        Calculate billing summary for a lawyer for a specific month.
+        Includes total hours, amount, and breakdown by mandate.
+        
+        **Query Parameters:**
+        - `month` (optional): Month number (1-12), defaults to current month
+        - `year` (optional): Year (YYYY), defaults to current year
+        
+        **Returns:**
+        - Lawyer information
+        - Total hours and billing amount
+        - Breakdown by mandate/client
+        - Individual time entries details
+        
+        **Example:** `/api/lawyers/1/monthly_billing/?month=6&year=2025`
+        """
         lawyer = self.get_object()
         
         # Get month and year from query params, default to current month
@@ -121,6 +211,31 @@ class LawyerViewSet(viewsets.ModelViewSet):
 
 
 class MandateViewSet(viewsets.ModelViewSet):
+    """
+    Mandate (Legal Project) Management API
+    
+    Manages legal mandates/projects. Mandates represent specific legal matters
+    handled for clients, with assigned lawyers and tracked time.
+    
+    **Permissions:**
+    - **Admin lawyers:** Full access to all mandates
+    - **Regular lawyers:** Access only to assigned mandates, limited write permissions
+    
+    **Filtering & Search:**
+    - Filter by: client, lawyers, due_date
+    - Search by: name, description, client name
+    - Order by: name, due_date, created_at
+    - Special status filters: active, inactive, overdue
+    
+    **Available Actions:**
+    - `GET /api/mandates/` - List mandates (role-filtered)
+    - `POST /api/mandates/` - Create new mandate
+    - `GET /api/mandates/{id}/` - Retrieve mandate details
+    - `PUT/PATCH /api/mandates/{id}/` - Update mandate (permissions apply)
+    - `DELETE /api/mandates/{id}/` - Delete mandate (admin only)
+    - `GET /api/mandates/{id}/summary/` - Get mandate summary with costs
+    - `GET /api/mandates/{id}/time_entries/` - Get mandate's time entries
+    """
     queryset = Mandate.objects.all()
     permission_classes = [CanModifyMandate]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -211,6 +326,37 @@ class MandateViewSet(viewsets.ModelViewSet):
 
 
 class TimeEntryViewSet(viewsets.ModelViewSet):
+    """
+    Time Entry Management API
+    
+    Manages billable time entries for legal work. Time entries record the hours
+    spent by lawyers on specific mandates, forming the basis for client billing.
+    
+    **Permissions:**
+    - **Admin lawyers:** Full access to all time entries
+    - **Regular lawyers:** Access only to their own time entries
+    
+    **Filtering & Search:**
+    - Filter by: mandate, lawyer, date, date_from, date_to
+    - Search by: description, mandate name, lawyer name
+    - Order by: date, hours, created_at
+    - Default ordering: newest entries first
+    
+    **Available Actions:**
+    - `GET /api/time-entries/` - List time entries (role-filtered)
+    - `POST /api/time-entries/` - Create new time entry
+    - `GET /api/time-entries/{id}/` - Retrieve time entry details
+    - `PUT/PATCH /api/time-entries/{id}/` - Update time entry (own entries only for regular lawyers)
+    - `DELETE /api/time-entries/{id}/` - Delete time entry (own entries only for regular lawyers)
+    
+    **Date Range Filtering:**
+    Use `date_from` and `date_to` parameters for filtering by date ranges.
+    Example: `/api/time-entries/?date_from=2025-07-01&date_to=2025-07-31`
+    
+    **Automatic Lawyer Assignment:**
+    Regular lawyers automatically have their lawyer profile assigned to new time entries.
+    Admin lawyers can specify any lawyer when creating time entries.
+    """
     queryset = TimeEntry.objects.all()
     serializer_class = TimeEntrySerializer
     permission_classes = [CanAccessTimeEntry]

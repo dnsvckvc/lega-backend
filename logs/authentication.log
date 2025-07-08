@@ -14,3 +14,11 @@
 2025-06-26 21:38:33,729 | WARNING | legal_backend.auth | LOGIN_FAILED | Email: admin@test.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]} | User-Agent: unknown
 2025-06-26 21:38:34,020 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: admin@test.com | Role: admin | IP: 127.0.0.1 | User-Agent: unknown
 2025-06-26 21:38:34,506 | INFO | legal_backend.auth | USER_CREATED | New User: new@test.com | Role: lawyer | Created By: admin@test.com | IP: 127.0.0.1
+2025-07-08 11:20:08,721 | WARNING | legal_backend.auth | LOGIN_FAILED | Email: admin@test.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]} | User-Agent: unknown
+2025-07-08 11:20:09,000 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: admin@test.com | Role: admin | IP: 127.0.0.1 | User-Agent: unknown
+2025-07-08 11:20:09,463 | INFO | legal_backend.auth | USER_CREATED | New User: new@test.com | Role: lawyer | Created By: admin@test.com | IP: 127.0.0.1
+2025-07-08 11:21:51,711 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: sarah.wilson@lawfirm.com | Role: admin | IP: 127.0.0.1 | User-Agent: PostmanRuntime/7.37.3
+2025-07-08 12:00:35,579 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: sarah.wilson@lawfirm.com | Role: admin | IP: 127.0.0.1 | User-Agent: PostmanRuntime/7.37.3
+2025-07-08 12:46:05,087 | WARNING | legal_backend.auth | LOGIN_FAILED | Email: admin@test.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='authorization')]} | User-Agent: unknown
+2025-07-08 12:46:05,375 | INFO | legal_backend.auth | LOGIN_SUCCESS | User: admin@test.com | Role: admin | IP: 127.0.0.1 | User-Agent: unknown
+2025-07-08 12:46:05,836 | INFO | legal_backend.auth | USER_CREATED | New User: new@test.com | Role: lawyer | Created By: admin@test.com | IP: 127.0.0.1

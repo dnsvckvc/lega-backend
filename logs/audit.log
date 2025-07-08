@@ -75,3 +75,35 @@
 2025-06-26 21:38:41,690 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: test@lawyer.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
 2025-06-26 21:38:42,062 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: test@lawyer.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
 2025-06-26 21:38:42,066 | INFO | legal_backend.audit | AUDIT | Action: LOGOUT | User: test@lawyer.com | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 11:20:08,722 | WARNING | legal_backend.audit | AUDIT | Action: LOGIN_FAILED | Email: admin@test.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='author
+2025-07-08 11:20:09,000 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 11:20:09,463 | INFO | legal_backend.audit | AUDIT | Action: CREATE_USER | New User: new@test.com | Role: lawyer | Created By: admin@test.com | IP: 127.0.0.1
+2025-07-08 11:20:09,646 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: clients | ID: unknown | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/clients/
+2025-07-08 11:20:10,203 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: time-entries | ID: unknown | User: lawyer@test.com | Role: lawyer | IP: 127.0.0.1 | Status: 201 | Path: /api/time-entries/
+2025-07-08 11:20:10,658 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: clients | ID: unknown | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/clients/
+2025-07-08 11:20:10,750 | INFO | legal_backend.audit | AUDIT | Action: DELETE | Resource: clients | ID: 1 | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: 204 | Path: /api/clients/1/
+2025-07-08 11:20:11,027 | INFO | legal_backend.audit | AUDIT | Action: UPDATE | Resource: clients | ID: 1 | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: 200 | Path: /api/clients/1/
+2025-07-08 11:20:11,119 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: lawyers | ID: unknown | User: admin2@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/lawyers/
+2025-07-08 11:20:11,399 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: mandates | ID: unknown | User: admin3@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/mandates/
+2025-07-08 11:20:11,684 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: time-entries | ID: unknown | User: admin4@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/time-entries/
+2025-07-08 11:20:16,375 | WARNING | legal_backend.audit | AUDIT | Action: LOGIN_FAILED | Email: test@lawyer.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='author
+2025-07-08 11:20:16,556 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: test@lawyer.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 11:20:16,738 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: test@lawyer.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 11:20:16,742 | INFO | legal_backend.audit | AUDIT | Action: LOGOUT | User: test@lawyer.com | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 11:21:51,712 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: sarah.wilson@lawfirm.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 12:00:35,579 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: sarah.wilson@lawfirm.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 12:46:05,088 | WARNING | legal_backend.audit | AUDIT | Action: LOGIN_FAILED | Email: admin@test.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='author
+2025-07-08 12:46:05,375 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 12:46:05,836 | INFO | legal_backend.audit | AUDIT | Action: CREATE_USER | New User: new@test.com | Role: lawyer | Created By: admin@test.com | IP: 127.0.0.1
+2025-07-08 12:46:06,019 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: clients | ID: unknown | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/clients/
+2025-07-08 12:46:06,584 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: time-entries | ID: unknown | User: lawyer@test.com | Role: lawyer | IP: 127.0.0.1 | Status: 201 | Path: /api/time-entries/
+2025-07-08 12:46:07,043 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: clients | ID: unknown | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/clients/
+2025-07-08 12:46:07,135 | INFO | legal_backend.audit | AUDIT | Action: DELETE | Resource: clients | ID: 1 | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: 204 | Path: /api/clients/1/
+2025-07-08 12:46:07,412 | INFO | legal_backend.audit | AUDIT | Action: UPDATE | Resource: clients | ID: 1 | User: admin@test.com | Role: admin | IP: 127.0.0.1 | Status: 200 | Path: /api/clients/1/
+2025-07-08 12:46:07,504 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: lawyers | ID: unknown | User: admin2@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/lawyers/
+2025-07-08 12:46:07,783 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: mandates | ID: unknown | User: admin3@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/mandates/
+2025-07-08 12:46:08,074 | INFO | legal_backend.audit | AUDIT | Action: CREATE | Resource: time-entries | ID: unknown | User: admin4@test.com | Role: admin | IP: 127.0.0.1 | Status: 201 | Path: /api/time-entries/
+2025-07-08 12:46:12,779 | WARNING | legal_backend.audit | AUDIT | Action: LOGIN_FAILED | Email: test@lawyer.com | IP: 127.0.0.1 | Error: {'non_field_errors': [ErrorDetail(string='Unable to log in with provided credentials.', code='author
+2025-07-08 12:46:12,961 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: test@lawyer.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 12:46:13,142 | INFO | legal_backend.audit | AUDIT | Action: LOGIN | User: test@lawyer.com | Role: admin | IP: 127.0.0.1 | Status: SUCCESS
+2025-07-08 12:46:13,145 | INFO | legal_backend.audit | AUDIT | Action: LOGOUT | User: test@lawyer.com | IP: 127.0.0.1 | Status: SUCCESS

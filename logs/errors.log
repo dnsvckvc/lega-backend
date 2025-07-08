@@ -1,0 +1,35 @@
+ERROR 2025-07-08 12:32:53,741 log 6542 6161281024 Internal Server Error: /docs/
+Traceback (most recent call last):
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/schemas/views.py", line 48, in handle_exception
+    return super().handle_exception(exc)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/schemas/views.py", line 37, in get
+    schema = self.schema_generator.get_schema(request, self.public)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/schemas/coreapi.py", line 156, in get_schema
+    links = self.get_links(None if public else request)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/schemas/coreapi.py", line 143, in get_links
+    link = view.schema.get_link(path, method, base_url=self.url)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/schemas/coreapi.py", line 371, in get_link
+    fields += self.get_serializer_fields(path, method)
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/schemas/coreapi.py", line 454, in get_serializer_fields
+    serializer = view.get_serializer()
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/generics.py", line 108, in get_serializer
+    serializer_class = self.get_serializer_class()
+  File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/generics.py", line 122, in get_serializer_class
+    assert self.serializer_class is not None, (
+AssertionError: 'MonthlyInvoiceGenerationView' should either include a `serializer_class` attribute, or override the `get_serializer_class()` method.

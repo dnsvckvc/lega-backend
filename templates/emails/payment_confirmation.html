@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Received - Invoice {{ invoice.invoice_number }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #27ae60;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .confirmation-title {
+            font-size: 20px;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+        .success-notice {
+            background-color: #d5f4e6;
+            border: 2px solid #27ae60;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .checkmark {
+            font-size: 48px;
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+        .payment-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #34495e;
+        }
+        .amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .thank-you {
+            background-color: #fff;
+            padding: 20px;
+            border-left: 4px solid #27ae60;
+            margin-bottom: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">{{ company_name }}</div>
+        <div class="confirmation-title">Payment Confirmation</div>
+    </div>
+
+    <div class="success-notice">
+        <div class="checkmark">✓</div>
+        <h2 style="color: #27ae60; margin: 0;">Payment Received Successfully</h2>
+        <p style="margin: 10px 0 0 0;">Thank you for your prompt payment!</p>
+    </div>
+
+    <p>Dear {{ client.name }},</p>
+
+    <p>We are pleased to confirm that we have received your payment for the following invoice:</p>
+
+    <div class="payment-details">
+        <div class="detail-row">
+            <span class="detail-label">Invoice Number:</span>
+            <span>{{ invoice.invoice_number }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Payment Date:</span>
+            <span>{{ invoice.paid_date|date:"F d, Y" }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Original Due Date:</span>
+            <span>{{ invoice.due_date|date:"F d, Y" }}</span>
+        </div>
+        {% if invoice.mandate %}
+        <div class="detail-row">
+            <span class="detail-label">Matter:</span>
+            <span>{{ invoice.mandate.name }}</span>
+        </div>
+        {% endif %}
+        <hr>
+        <div class="detail-row">
+            <span class="detail-label">Amount Paid:</span>
+            <span class="amount">${{ invoice.total_amount|floatformat:2 }}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Payment Status:</span>
+            <span style="color: #27ae60; font-weight: bold;">PAID IN FULL</span>
+        </div>
+    </div>
+
+    <div class="thank-you">
+        <h3>Thank You for Your Business</h3>
+        <p>We appreciate your prompt payment and continued trust in our services. Your account is now current, and this invoice has been marked as paid in our records.</p>
+    </div>
+
+    <p><strong>Important:</strong> Please retain this email as confirmation of payment. If you need a formal receipt or have any questions about this payment, please contact us at {{ company_email }}.</p>
+
+    {% if invoice.notes %}
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <p><strong>Original Invoice Notes:</strong></p>
+        <p>{{ invoice.notes|linebreaks }}</p>
+    </div>
+    {% endif %}
+
+    <p>We look forward to continuing to serve you and your legal needs. Thank you for choosing {{ company_name }}.</p>
+
+    <div class="footer">
+        <p>{{ company_name }}</p>
+        <p>Email: {{ company_email }}</p>
+        <p>This is an automated confirmation. Please keep this email for your records.</p>
+    </div>
+</body>
+</html>

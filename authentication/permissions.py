@@ -1,6 +1,20 @@
 from rest_framework import permissions
 
 
+class IsLawyer(permissions.BasePermission):
+    """
+    Custom permission to only allow lawyers to access certain views.
+    """
+    
+    def has_permission(self, request, view):
+        return (
+            request.user and
+            request.user.is_authenticated and
+            hasattr(request.user, 'lawyer_profile') and
+            request.user.lawyer_profile is not None
+        )
+
+
 class IsAdminLawyer(permissions.BasePermission):
     """
     Custom permission to only allow admin lawyers to access certain views.

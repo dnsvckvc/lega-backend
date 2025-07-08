@@ -70,3 +70,136 @@ INFO 2025-06-26 21:38:42,067 test_logging 29415 8343653376 Test performance log
 INFO 2025-06-26 21:38:42,067 test_logging 29415 8343653376 Test API log
 INFO 2025-06-26 21:38:42,068 test_logging 29415 8343653376 Test log message
 INFO 2025-06-26 21:39:38,970 basehttp 26435 6165524480 "GET /api/time-entries/?date_from=2025-06-01&date_to=2025-06-30 HTTP/1.1" 200 1222
+INFO 2025-06-27 08:43:20,501 autoreload 26435 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/models.py changed, reloading.
+INFO 2025-06-27 08:43:21,259 autoreload 32423 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-27 08:47:50,188 autoreload 32423 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/models.py changed, reloading.
+INFO 2025-06-27 08:47:51,421 autoreload 32568 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-27 08:48:09,048 autoreload 32568 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/models.py changed, reloading.
+INFO 2025-06-27 08:48:09,783 autoreload 32598 8343653376 Watching for file changes with StatReloader
+INFO 2025-06-27 14:23:12,837 autoreload 32598 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/serializers.py changed, reloading.
+INFO 2025-06-27 14:23:14,057 autoreload 38846 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-04 14:48:08,307 autoreload 38846 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/serializers.py changed, reloading.
+INFO 2025-07-04 14:48:10,823 autoreload 71573 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-04 14:48:46,884 autoreload 71573 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/serializers.py changed, reloading.
+INFO 2025-07-04 14:48:47,633 autoreload 71610 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-04 14:50:27,590 autoreload 71610 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/urls.py changed, reloading.
+INFO 2025-07-04 14:50:31,793 autoreload 71700 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-04 15:27:37,452 autoreload 71700 8343653376 /Users/dvuckovac/projects/vibe/claude-first/authentication/permissions.py changed, reloading.
+ERROR 2025-07-04 15:32:38,926 email_service 74796 8343653376 Failed to send invoice email for INV-2025-0001: emails/invoice_email.html
+INFO 2025-07-04 15:34:16,754 email_service 74869 8343653376 Invoice email sent successfully for INV-2025-0001 to legal@techcorp.com
+INFO 2025-07-04 15:34:45,705 email_service 74899 8343653376 Invoice email sent successfully for INV-2025-0001 to legal@techcorp.com
+INFO 2025-07-04 15:35:03,053 email_service 74920 8343653376 Payment reminder sent for INV-2025-0001 to legal@techcorp.com
+INFO 2025-07-08 11:20:16,743 test_logging 2114 8343653376 Test performance log
+INFO 2025-07-08 11:20:16,744 test_logging 2114 8343653376 Test API log
+INFO 2025-07-08 11:20:16,744 test_logging 2114 8343653376 Test log message
+INFO 2025-07-08 11:21:19,380 autoreload 2173 8343653376 Watching for file changes with StatReloader
+WARNING 2025-07-08 11:21:23,027 basehttp 2173 6136967168 "GET /auth/current-user/ HTTP/1.1" 401 5160
+INFO 2025-07-08 11:21:23,060 basehttp 2173 6153793536 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-07-08 11:21:23,060 basehttp 2173 6136967168 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2025-07-08 11:21:23,061 basehttp 2173 6170619904 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1719
+INFO 2025-07-08 11:21:23,061 basehttp 2173 6204272640 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-07-08 11:21:23,063 basehttp 2173 6153793536 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+INFO 2025-07-08 11:21:23,065 basehttp 2173 6221099008 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-07-08 11:21:23,065 basehttp 2173 6136967168 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-07-08 11:21:23,065 basehttp 2173 6204272640 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-07-08 11:21:23,066 basehttp 2173 6187446272 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-07-08 11:21:23,067 basehttp 2173 6170619904 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+INFO 2025-07-08 11:21:23,203 basehttp 2173 6170619904 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-07-08 11:21:51,714 basehttp 2173 6237925376 "POST /auth/login/ HTTP/1.1" 200 618
+INFO 2025-07-08 11:21:56,917 basehttp 2173 6237925376 "GET /auth/current-user/ HTTP/1.1" 200 237
+INFO 2025-07-08 11:22:10,859 basehttp 2173 6237925376 "GET /auth/users/ HTTP/1.1" 200 583
+INFO 2025-07-08 12:00:35,581 basehttp 2173 6237925376 "POST /auth/login/ HTTP/1.1" 200 618
+INFO 2025-07-08 12:00:40,871 basehttp 2173 6237925376 "GET /auth/current-user/ HTTP/1.1" 200 237
+INFO 2025-07-08 12:00:46,654 basehttp 2173 6237925376 "GET /monitoring/dashboard/ HTTP/1.1" 200 573
+INFO 2025-07-08 12:00:57,112 basehttp 2173 6237925376 "GET /monitoring/logs/?limit=50 HTTP/1.1" 200 23022
+INFO 2025-07-08 12:01:26,869 basehttp 2173 6237925376 "GET /monitoring/activity/?days=7 HTTP/1.1" 200 9543
+INFO 2025-07-08 12:01:36,663 basehttp 2173 6237925376 "GET /monitoring/health/ HTTP/1.1" 200 935
+INFO 2025-07-08 12:01:49,646 basehttp 2173 6237925376 "GET /monitoring/dashboard/ HTTP/1.1" 200 573
+INFO 2025-07-08 12:02:08,584 basehttp 2173 6237925376 "GET /monitoring/health/ HTTP/1.1" 200 935
+WARNING 2025-07-08 12:05:55,287 basehttp 2173 6136967168 "GET /auth/current-user/ HTTP/1.1" 401 5160
+WARNING 2025-07-08 12:05:58,756 basehttp 2173 6136967168 "GET / HTTP/1.1" 404 2386
+INFO 2025-07-08 12:06:02,761 basehttp 2173 6136967168 "GET /admin HTTP/1.1" 301 0
+INFO 2025-07-08 12:06:02,773 basehttp 2173 6136967168 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-07-08 12:06:02,795 basehttp 2173 6136967168 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+INFO 2025-07-08 12:06:02,818 basehttp 2173 6136967168 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-07-08 12:06:02,822 basehttp 2173 6153793536 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-07-08 12:06:02,823 basehttp 2173 6187446272 "GET /static/admin/css/login.css HTTP/1.1" 200 958
+INFO 2025-07-08 12:06:02,823 basehttp 2173 6170619904 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-07-08 12:06:02,824 basehttp 2173 6204272640 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+INFO 2025-07-08 12:06:02,869 basehttp 2173 6204272640 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-07-08 12:06:02,869 basehttp 2173 6170619904 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-07-08 12:06:06,942 basehttp 2173 6170619904 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4336
+INFO 2025-07-08 12:09:28,841 basehttp 2173 6136967168 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-07-08 12:09:28,853 basehttp 2173 6136967168 "GET /admin/ HTTP/1.1" 200 8925
+INFO 2025-07-08 12:09:28,881 basehttp 2173 6136967168 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-07-08 12:09:28,936 basehttp 2173 6136967168 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-07-08 12:09:28,937 basehttp 2173 6153793536 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-07-08 12:09:37,284 basehttp 2173 6136967168 "GET /admin/core/mandate/ HTTP/1.1" 200 15463
+INFO 2025-07-08 12:09:37,317 basehttp 2173 6136967168 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+INFO 2025-07-08 12:09:37,319 basehttp 2173 6187446272 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-07-08 12:09:37,321 basehttp 2173 6136967168 "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+INFO 2025-07-08 12:09:37,323 basehttp 2173 6204272640 "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+INFO 2025-07-08 12:09:37,327 basehttp 2173 6221099008 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+INFO 2025-07-08 12:09:37,328 basehttp 2173 6187446272 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-07-08 12:09:37,330 basehttp 2173 6153793536 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-08 12:09:37,331 basehttp 2173 6136967168 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-07-08 12:09:37,338 basehttp 2173 6187446272 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-07-08 12:09:37,338 basehttp 2173 6221099008 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-07-08 12:09:37,341 basehttp 2173 6170619904 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+INFO 2025-07-08 12:09:37,344 basehttp 2173 6204272640 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+INFO 2025-07-08 12:09:37,362 basehttp 2173 6204272640 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-07-08 12:09:37,377 basehttp 2173 6204272640 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-07-08 12:09:37,377 basehttp 2173 6170619904 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-07-08 12:09:40,402 basehttp 2173 6170619904 "GET /admin/core/timeentry/ HTTP/1.1" 200 16648
+INFO 2025-07-08 12:09:40,423 basehttp 2173 6170619904 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-08 12:09:42,416 basehttp 2173 6136967168 "GET /admin/core/lawyer/ HTTP/1.1" 200 13666
+INFO 2025-07-08 12:09:42,448 basehttp 2173 6136967168 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-08 12:09:43,427 basehttp 2173 6136967168 "GET /admin/core/client/ HTTP/1.1" 200 13413
+INFO 2025-07-08 12:09:43,453 basehttp 2173 6136967168 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-08 12:09:45,677 basehttp 2173 6136967168 "GET /admin/auth/group/ HTTP/1.1" 200 9796
+INFO 2025-07-08 12:09:45,713 basehttp 2173 6136967168 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-08 12:09:47,882 basehttp 2173 6136967168 "GET /admin/authentication/user/ HTTP/1.1" 200 15801
+INFO 2025-07-08 12:09:47,912 basehttp 2173 6136967168 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-08 12:11:55,279 autoreload 2173 8343653376 /Users/dvuckovac/projects/vibe/claude-first/legal_backend/settings.py changed, reloading.
+INFO 2025-07-08 12:11:55,800 autoreload 4317 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:14:30,158 autoreload 4317 8343653376 /Users/dvuckovac/projects/vibe/claude-first/legal_backend/urls.py changed, reloading.
+INFO 2025-07-08 12:14:30,652 autoreload 4567 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:15:32,631 autoreload 4567 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/views.py changed, reloading.
+INFO 2025-07-08 12:15:33,114 autoreload 4615 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:15:53,837 autoreload 4615 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/views.py changed, reloading.
+INFO 2025-07-08 12:15:54,247 autoreload 4648 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:16:31,756 autoreload 4648 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/views.py changed, reloading.
+INFO 2025-07-08 12:16:32,291 autoreload 4687 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:17:31,769 autoreload 4687 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/views.py changed, reloading.
+INFO 2025-07-08 12:17:32,246 autoreload 4732 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:18:00,190 autoreload 4732 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/views.py changed, reloading.
+INFO 2025-07-08 12:18:00,632 autoreload 4779 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:22:08,530 autoreload 4779 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/views.py changed, reloading.
+INFO 2025-07-08 12:22:09,518 autoreload 4964 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:23:39,574 autoreload 4964 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/urls.py changed, reloading.
+INFO 2025-07-08 12:23:40,095 autoreload 5084 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:23:54,743 autoreload 5084 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/urls.py changed, reloading.
+INFO 2025-07-08 12:23:55,262 autoreload 5116 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:27:30,168 autoreload 6229 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:32:05,239 autoreload 6542 8343653376 Watching for file changes with StatReloader
+WARNING 2025-07-08 12:32:16,385 basehttp 6542 6161281024 "GET /docs/ HTTP/1.1" 401 58
+ERROR 2025-07-08 12:32:53,742 basehttp 6542 6161281024 "GET /docs/ HTTP/1.1" 500 138190
+INFO 2025-07-08 12:33:34,144 autoreload 6542 8343653376 /Users/dvuckovac/projects/vibe/claude-first/core/invoice_views.py changed, reloading.
+INFO 2025-07-08 12:33:34,851 autoreload 6652 8343653376 Watching for file changes with StatReloader
+INFO 2025-07-08 12:33:50,651 basehttp 6652 6131871744 "GET /docs/ HTTP/1.1" 200 677586
+INFO 2025-07-08 12:34:24,939 basehttp 6652 6131871744 "GET /docs/ HTTP/1.1" 200 677584
+INFO 2025-07-08 12:34:24,985 basehttp 6652 6165524480 "GET /static/rest_framework/docs/css/base.css HTTP/1.1" 200 6156
+INFO 2025-07-08 12:34:24,987 basehttp 6652 6182350848 "GET /static/rest_framework/docs/css/jquery.json-view.min.css HTTP/1.1" 200 1307
+INFO 2025-07-08 12:34:24,987 basehttp 6652 6131871744 "GET /static/rest_framework/css/bootstrap-theme.min.css HTTP/1.1" 200 23411
+INFO 2025-07-08 12:34:25,006 basehttp 6652 6148698112 "GET /static/rest_framework/css/font-awesome-4.0.3.css HTTP/1.1" 200 21658
+INFO 2025-07-08 12:34:25,039 basehttp 6652 6216003584 "GET /docs/schema.js HTTP/1.1" 200 90632
+INFO 2025-07-08 12:34:25,042 basehttp 6652 6199177216 "GET /static/rest_framework/js/coreapi-0.1.1.js HTTP/1.1" 200 157600
+INFO 2025-07-08 12:34:25,074 basehttp 6652 6199177216 "GET /static/rest_framework/fonts/fontawesome-webfont.woff?v=4.0.3 HTTP/1.1" 200 44432
+INFO 2025-07-08 12:34:25,119 basehttp 6652 6199177216 "GET /static/rest_framework/docs/js/jquery.json-view.min.js HTTP/1.1" 200 2700
+INFO 2025-07-08 12:34:25,120 basehttp 6652 6216003584 "GET /static/rest_framework/docs/js/api.js HTTP/1.1" 200 10391
+INFO 2025-07-08 12:34:25,140 basehttp 6652 6216003584 "GET /static/rest_framework/docs/img/favicon.ico HTTP/1.1" 200 5430
+WARNING 2025-07-08 12:36:10,468 basehttp 6652 6131871744 "GET /api/clients/ HTTP/1.1" 401 58
+INFO 2025-07-08 12:36:21,281 basehttp 6652 6131871744 "GET /api/clients/ HTTP/1.1" 200 820
+INFO 2025-07-08 12:46:13,147 test_logging 6942 8343653376 Test performance log
+INFO 2025-07-08 12:46:13,148 test_logging 6942 8343653376 Test API log
+INFO 2025-07-08 12:46:13,148 test_logging 6942 8343653376 Test log message
