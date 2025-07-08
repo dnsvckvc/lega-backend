@@ -165,9 +165,28 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:5173",  # Vite default port
+    "http://127.0.0.1:5173",
+    "http://localhost:8080",  # Vue CLI default port
+    "http://127.0.0.1:8080",
+    "http://localhost:4200",  # Angular CLI default port
+    "http://127.0.0.1:4200",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+# Additional CORS settings for development
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 # JWT Settings
 from datetime import timedelta
