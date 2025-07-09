@@ -32,8 +32,10 @@ In the `.env` file, replace placeholders with actual values:
 ALLOWED_HOSTS=192.168.1.100,your-domain.com
 CORS_ALLOWED_ORIGINS=http://192.168.1.100:3000,http://localhost:3000
 
-# Set a secure password
-POSTGRES_PASSWORD=your_secure_password_here
+# IMPORTANT: Generate a secure password for PostgreSQL
+# Run: python3 -c "import secrets; print(secrets.token_urlsafe(32))"
+# Replace the default password with the generated one
+POSTGRES_PASSWORD=your_generated_secure_password_here
 
 # For testing, you can temporarily enable all origins
 # CORS_ALLOW_ALL_ORIGINS=True
