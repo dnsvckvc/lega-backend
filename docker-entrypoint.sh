@@ -79,6 +79,38 @@ create_superuser() {
     fi
 }
 
+# Function to ensure logs directory permissions
+ensure_logs_permissions() {
+    echo -e "${YELLOW}Ensuring logs directory permissions...${NC}"
+    
+    # Create logs directory if it doesn't exist
+    mkdir -p /app/logs
+    
+    # Check if we can write to the logs directory
+    if [ -w /app/logs ]; then
+        echo -e "${GREEN}Logs directory is writable!${NC}"
+    else
+        echo -e "${RED}Logs directory is not writable! Attempting to fix...${NC}"
+        # Try to fix permissions (this might not work in all environments)
+        chmod 755 /app/logs 2>/dev/null || true
+        
+        if [ -w /app/logs ]; then
+            echo -e "${GREEN}Logs directory permissions fixed!${NC}"
+        else
+            echo -e "${RED}Cannot fix logs directory permissions. Logging may fail.${NC}"
+        fi
+    fi
+    
+    # Test if we can create a log file
+    touch /app/logs/test.log 2>/dev/null && rm -f /app/logs/test.log
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Log file creation test passed!${NC}"
+    else
+        echo -e "${RED}Cannot create log files in /app/logs directory!${NC}"
+        exit 1
+    fi
+}
+
 # Function to check system health
 check_system_health() {
     echo -e "${YELLOW}Checking system health...${NC}"
@@ -95,6 +127,9 @@ check_system_health() {
 # Main execution
 main() {
     echo -e "${GREEN}=== Legal Backend Initialization ===${NC}"
+    
+    # Ensure logs directory permissions
+    ensure_logs_permissions
     
     # Wait for database
     wait_for_db

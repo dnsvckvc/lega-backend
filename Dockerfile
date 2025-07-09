@@ -24,15 +24,18 @@ RUN apt-get update \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Create non-root user first
+RUN adduser --disabled-password --gecos '' appuser
+
 # Copy project
 COPY . .
 
-# Create logs directory
-RUN mkdir -p logs
+# Create logs directory and set permissions
+RUN mkdir -p logs media static \
+    && chown -R appuser:appuser /app \
+    && chmod -R 755 /app/logs
 
-# Create non-root user
-RUN adduser --disabled-password --gecos '' appuser \
-    && chown -R appuser:appuser /app
+# Switch to non-root user
 USER appuser
 
 # Expose port
