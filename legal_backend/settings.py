@@ -263,7 +263,7 @@ LOGGING = {
         'file_general': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': LOGS_DIR / 'general.log',
+            'filename': str(LOGS_DIR / 'general.log'),
             'maxBytes': 10 * 1024 * 1024,  # 10 MB
             'backupCount': 10,
             'formatter': 'verbose',
@@ -271,7 +271,7 @@ LOGGING = {
         'file_error': {
             'level': 'ERROR',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': LOGS_DIR / 'errors.log',
+            'filename': str(LOGS_DIR / 'errors.log'),
             'maxBytes': 10 * 1024 * 1024,  # 10 MB
             'backupCount': 10,
             'formatter': 'verbose',
@@ -279,7 +279,7 @@ LOGGING = {
         'file_audit': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': LOGS_DIR / 'audit.log',
+            'filename': str(LOGS_DIR / 'audit.log'),
             'maxBytes': 50 * 1024 * 1024,  # 50 MB
             'backupCount': 20,
             'formatter': 'audit',
@@ -287,7 +287,7 @@ LOGGING = {
         'file_auth': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': LOGS_DIR / 'authentication.log',
+            'filename': str(LOGS_DIR / 'authentication.log'),
             'maxBytes': 10 * 1024 * 1024,  # 10 MB
             'backupCount': 10,
             'formatter': 'audit',
@@ -295,7 +295,7 @@ LOGGING = {
         'file_performance': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': LOGS_DIR / 'performance.log',
+            'filename': str(LOGS_DIR / 'performance.log'),
             'maxBytes': 20 * 1024 * 1024,  # 20 MB
             'backupCount': 15,
             'formatter': 'performance',
@@ -303,7 +303,7 @@ LOGGING = {
         'file_api': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': LOGS_DIR / 'api_requests.log',
+            'filename': str(LOGS_DIR / 'api_requests.log'),
             'maxBytes': 50 * 1024 * 1024,  # 50 MB
             'backupCount': 20,
             'formatter': 'audit',
