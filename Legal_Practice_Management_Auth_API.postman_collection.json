@@ -635,6 +635,88 @@
 					}
 				},
 				{
+					"name": "Update Client (Admin Only)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200 (Admin) or 403 (Regular)', function () {",
+									"    pm.expect([200, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Client updated successfully:', jsonData.name);",
+									"} else {",
+									"    console.log('Access denied - Only admin lawyers can update clients');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Client Name\",\n    \"email\": \"updated@client.com\",\n    \"phone\": \"555-0199\",\n    \"address\": \"Updated Address, Updated City, CA 90210\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/{{test_client_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "clients", "{{test_client_id}}", ""]
+						}
+					}
+				},
+				{
+					"name": "Update Client (PATCH) (Admin Only)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200 (Admin) or 403 (Regular)', function () {",
+									"    pm.expect([200, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Client partially updated:', jsonData.name);",
+									"} else {",
+									"    console.log('Access denied - Only admin lawyers can update clients');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\": \"555-0200\",\n    \"address\": \"Partially Updated Address, New City, NY 10001\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/{{test_client_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "clients", "{{test_client_id}}", ""]
+						}
+					}
+				},
+				{
 					"name": "Get Client's Mandates",
 					"event": [
 						{
@@ -961,6 +1043,88 @@
 					}
 				},
 				{
+					"name": "Update Mandate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200 or 403', function () {",
+									"    pm.expect([200, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Mandate updated successfully:', jsonData.name);",
+									"} else {",
+									"    console.log('Access may be restricted based on role');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Mandate Name\",\n    \"description\": \"Updated mandate description\",\n    \"client\": {{test_client_id}},\n    \"lawyers\": [{{test_lawyer_id}}],\n    \"due_date\": \"2025-10-31\",\n    \"cost_ceiling\": \"150000.00\",\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mandates/{{test_mandate_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", "{{test_mandate_id}}", ""]
+						}
+					}
+				},
+				{
+					"name": "Update Mandate (PATCH)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200 or 403', function () {",
+									"    pm.expect([200, 403]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Mandate partially updated:', jsonData.name);",
+									"} else {",
+									"    console.log('Access may be restricted based on role');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_active\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mandates/{{test_mandate_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", "{{test_mandate_id}}", ""]
+						}
+					}
+				},
+				{
 					"name": "Get Mandate Summary",
 					"event": [
 						{
@@ -1094,6 +1258,122 @@
 					}
 				},
 				{
+					"name": "Update Time Entry",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Get a time entry ID from the environment or use a test one",
+									"let timeEntryId = pm.environment.get('test_time_entry_id');",
+									"if (!timeEntryId) {",
+									"    timeEntryId = 1; // fallback",
+									"    pm.environment.set('test_time_entry_id', timeEntryId);",
+									"}",
+									"console.log('Updating time entry ID:', timeEntryId);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200, 403, or 404', function () {",
+									"    pm.expect([200, 403, 404]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Time entry updated successfully:', jsonData.hours, 'hours');",
+									"} else if (pm.response.code === 403) {",
+									"    console.log('Access denied - Can only update own time entries');",
+									"} else {",
+									"    console.log('Time entry not found or access restricted');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mandate\": {{test_mandate_id}},\n    \"lawyer\": {{current_lawyer_id}},\n    \"date\": \"{{current_date}}\",\n    \"hours\": \"4.0\",\n    \"description\": \"Updated time entry description - contract review and client meeting\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/{{test_time_entry_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "time-entries", "{{test_time_entry_id}}", ""]
+						}
+					}
+				},
+				{
+					"name": "Update Time Entry (PATCH)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Get a time entry ID from the environment or use a test one",
+									"let timeEntryId = pm.environment.get('test_time_entry_id');",
+									"if (!timeEntryId) {",
+									"    timeEntryId = 1; // fallback",
+									"    pm.environment.set('test_time_entry_id', timeEntryId);",
+									"}",
+									"console.log('Partially updating time entry ID:', timeEntryId);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200, 403, or 404', function () {",
+									"    pm.expect([200, 403, 404]).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const jsonData = pm.response.json();",
+									"    console.log('Time entry partially updated:', jsonData.hours, 'hours');",
+									"} else if (pm.response.code === 403) {",
+									"    console.log('Access denied - Can only update own time entries');",
+									"} else {",
+									"    console.log('Time entry not found or access restricted');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hours\": \"5.0\",\n    \"description\": \"Extended research and document preparation\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/time-entries/{{test_time_entry_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "time-entries", "{{test_time_entry_id}}", ""]
+						}
+					}
+				},
+				{
 					"name": "Filter Time Entries by Date",
 					"event": [
 						{
@@ -1108,6 +1388,12 @@
 									"pm.test('Filtered entries returned', function () {",
 									"    const jsonData = pm.response.json();",
 									"    console.log('Found', jsonData.results.length, 'time entries in date range');",
+									"    ",
+									"    // Set test_time_entry_id if we have results",
+									"    if (jsonData.results.length > 0) {",
+									"        pm.environment.set('test_time_entry_id', jsonData.results[0].id);",
+									"        console.log('Auto-set test_time_entry_id to:', jsonData.results[0].id);",
+									"    }",
 									"});"
 								]
 							}
@@ -1261,6 +1547,253 @@
 							"raw": "{{base_url}}/api/clients/",
 							"host": ["{{base_url}}"],
 							"path": ["api", "clients", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "📋 Change Logs",
+			"item": [
+				{
+					"name": "Get All Change Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"if (jsonData.results && jsonData.results.length > 0) {",
+									"    console.log('✅ Change logs retrieved:', jsonData.results.length, 'entries');",
+									"    console.log('Latest change:', jsonData.results[0].change_type, jsonData.results[0].model_name, 'by', jsonData.results[0].changed_by_email);",
+									"    pm.environment.set('test_change_log_id', jsonData.results[0].id);",
+									"} else {",
+									"    console.log('ℹ️  No change logs found - perform some CRUD operations first');",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Change Log by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/{{test_change_log_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", "{{test_change_log_id}}", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Client Changes Only",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/client_changes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", "client_changes", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Mandate Changes Only",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/mandate_changes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", "mandate_changes", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Time Entry Changes Only",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/timeentry_changes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", "timeentry_changes", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Recent Changes (Last 24 Hours)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/recent/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", "recent", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Changes by User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Use current user ID if available",
+									"const userId = pm.environment.get('current_user_id') || '1';",
+									"pm.environment.set('test_user_id', userId);",
+									"console.log('Using user ID:', userId);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/user_activity/?user_id={{test_user_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", "user_activity", ""],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{test_user_id}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Object Change History",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Use test client ID if available",
+									"const objectId = pm.environment.get('test_client_id') || '1';",
+									"pm.environment.set('test_object_id', objectId);",
+									"console.log('Getting change history for client ID:', objectId);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/object_history/?model_name=client&object_id={{test_object_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", "object_history", ""],
+							"query": [
+								{
+									"key": "model_name",
+									"value": "client"
+								},
+								{
+									"key": "object_id",
+									"value": "{{test_object_id}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Filter Changes by Date Range",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Set date range for current month",
+									"const today = new Date();",
+									"const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);",
+									"const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);",
+									"",
+									"const dateFrom = firstDay.toISOString().split('T')[0];",
+									"const dateTo = lastDay.toISOString().split('T')[0];",
+									"",
+									"pm.environment.set('filter_date_from', dateFrom);",
+									"pm.environment.set('filter_date_to', dateTo);",
+									"",
+									"console.log('Filtering changes from', dateFrom, 'to', dateTo);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/?changed_at_from={{filter_date_from}}&changed_at_to={{filter_date_to}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", ""],
+							"query": [
+								{
+									"key": "changed_at_from",
+									"value": "{{filter_date_from}}"
+								},
+								{
+									"key": "changed_at_to",
+									"value": "{{filter_date_to}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Filter Changes by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/?change_type=UPDATE",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", ""],
+							"query": [
+								{
+									"key": "change_type",
+									"value": "UPDATE"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Changes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/change-logs/?search=name",
+							"host": ["{{base_url}}"],
+							"path": ["api", "change-logs", ""],
+							"query": [
+								{
+									"key": "search",
+									"value": "name"
+								}
+							]
 						}
 					}
 				}

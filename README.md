@@ -16,6 +16,7 @@ A Django REST API backend for managing legal practice operations including clien
 - **Lawyer Management**: Manage lawyer profiles with hourly rates and user account linking
 - **Mandate Management**: Track legal projects with assigned lawyers, due dates, and cost ceilings
 - **Time Tracking**: Log billable hours with automatic cost calculations
+- **Change Tracking**: Comprehensive audit trail for all data modifications with field-level changes
 - **REST API**: Full CRUD operations with filtering, searching, and pagination
 - **Admin Interface**: Django admin interface for easy data management
 - **Postman Integration**: Complete API collection with authentication testing
@@ -52,6 +53,13 @@ A Django REST API backend for managing legal practice operations including clien
 - Automatic cost calculation based on lawyer's hourly rate
 - Optional description for work performed
 - **Access**: Admins see all, regular lawyers see only their own entries
+
+#### ChangeLog
+- Unified change tracking for all data modifications
+- Field-level audit trail with old/new values
+- User attribution and timestamp tracking
+- Generic foreign key system for extensibility
+- **Access**: Role-based filtering matching source data permissions
 
 ## 🔗 API Endpoints
 
@@ -104,6 +112,16 @@ Base URL: `/api/`
 - `GET /api/time-entries/{id}/` - Get time entry details *(access-controlled)*
 - `PUT/PATCH /api/time-entries/{id}/` - Update time entry *(access-controlled)*
 - `DELETE /api/time-entries/{id}/` - Delete time entry *(access-controlled)*
+
+#### Change Logs (Role-Based Access)
+- `GET /api/change-logs/` - List all change logs *(role-filtered)*
+- `GET /api/change-logs/{id}/` - Get change log details *(access-controlled)*
+- `GET /api/change-logs/client-changes/` - Get client changes only *(role-filtered)*
+- `GET /api/change-logs/mandate-changes/` - Get mandate changes only *(role-filtered)*
+- `GET /api/change-logs/timeentry-changes/` - Get time entry changes only *(role-filtered)*
+- `GET /api/change-logs/recent/` - Get recent changes (last 24 hours) *(role-filtered)*
+- `GET /api/change-logs/user-activity/` - Get changes by specific user *(role-filtered)*
+- `GET /api/change-logs/object-history/` - Get change history for specific object *(role-filtered)*
 
 ## 🚀 Setup Instructions
 
@@ -199,9 +217,10 @@ python manage.py test core.tests          # Model tests
 python manage.py test core.test_api       # API endpoint tests (requires auth updates)
 python manage.py test core.test_serializers  # Serializer tests
 python manage.py test core.test_filtering    # Filtering tests (requires auth updates)
+python manage.py test core.test_change_tracking  # Change tracking tests (24 tests)
 ```
 
-**Note**: Some core tests need authentication setup. The authentication tests (11 tests) are fully functional.
+**Note**: Some core tests need authentication setup. The authentication tests (11 tests) and change tracking tests (24 tests) are fully functional.
 
 ### Authentication Testing
 

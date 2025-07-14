@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from .models import Client, Lawyer, Mandate, TimeEntry, Invoice, InvoiceLineItem
+from .models import Client, Lawyer, Mandate, TimeEntry, Invoice, InvoiceLineItem, ChangeLog
+from datetime import date, datetime
+from decimal import Decimal
+import json
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -210,3 +213,79 @@ class InvoiceSummarySerializer(serializers.Serializer):
     outstanding_amount = serializers.DecimalField(max_digits=12, decimal_places=2)
     overdue_count = serializers.IntegerField()
     overdue_amount = serializers.DecimalField(max_digits=12, decimal_places=2)
+
+
+class ChangeLogSerializer(serializers.ModelSerializer):
+    """
+    Serializer for change log entries.
+    """
+    model_name = serializers.ReadOnlyField()
+    app_label = serializers.ReadOnlyField()
+    changed_by_email = serializers.CharField(source='changed_by.email', read_only=True)
+    changed_by_name = serializers.CharField(source='changed_by.get_full_name', read_only=True)
+    old_value_parsed = serializers.SerializerMethodField()
+    new_value_parsed = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = ChangeLog
+        fields = [
+            'id', 'model_name', 'app_label', 'object_id', 'field_name',
+            'old_value', 'new_value', 'old_value_parsed', 'new_value_parsed',
+            'change_type', 'changed_by', 'changed_by_email', 'changed_by_name',
+            'changed_at', 'ip_address', 'user_agent'
+        ]
+        read_only_fields = ['id', 'changed_at']
+    
+    def get_old_value_parsed(self, obj):
+        """Parse old_value from JSON string to appropriate type."""
+        if obj.old_value is None:
+            return None
+        try:
+            return json.loads(obj.old_value)
+        except (json.JSONDecodeError, TypeError):
+            return obj.old_value
+    
+    def get_new_value_parsed(self, obj):
+        """Parse new_value from JSON string to appropriate type."""
+        if obj.new_value is None:
+            return None
+        try:
+            return json.loads(obj.new_value)
+        except (json.JSONDecodeError, TypeError):
+            return obj.new_value
+
+
+class ChangeLogListSerializer(serializers.ModelSerializer):
+    """
+    Simplified serializer for change log list views.
+    """
+    model_name = serializers.ReadOnlyField()
+    changed_by_email = serializers.CharField(source='changed_by.email', read_only=True)
+    old_value_parsed = serializers.SerializerMethodField()
+    new_value_parsed = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = ChangeLog
+        fields = [
+            'id', 'model_name', 'object_id', 'field_name',
+            'old_value_parsed', 'new_value_parsed', 'change_type',
+            'changed_by_email', 'changed_at'
+        ]
+    
+    def get_old_value_parsed(self, obj):
+        """Parse old_value from JSON string to appropriate type."""
+        if obj.old_value is None:
+            return None
+        try:
+            return json.loads(obj.old_value)
+        except (json.JSONDecodeError, TypeError):
+            return obj.old_value
+    
+    def get_new_value_parsed(self, obj):
+        """Parse new_value from JSON string to appropriate type."""
+        if obj.new_value is None:
+            return None
+        try:
+            return json.loads(obj.new_value)
+        except (json.JSONDecodeError, TypeError):
+            return obj.new_value

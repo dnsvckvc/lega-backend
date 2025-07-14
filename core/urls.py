@@ -5,6 +5,7 @@ from .invoice_views import (
     InvoiceViewSet, InvoiceLineItemViewSet, ClientInvoiceHistoryView,
     MandateInvoiceListView, UnbilledTimeEntriesView, MonthlyInvoiceGenerationView
 )
+from .change_log_views import ChangeLogViewSet
 from .api_docs import api_schema, api_examples
 
 router = DefaultRouter()
@@ -14,6 +15,7 @@ router.register(r'mandates', MandateViewSet)
 router.register(r'time-entries', TimeEntryViewSet)
 router.register(r'invoices', InvoiceViewSet)
 router.register(r'invoice-line-items', InvoiceLineItemViewSet)
+router.register(r'change-logs', ChangeLogViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

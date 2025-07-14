@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.conf import settings
 from decimal import Decimal
 from datetime import date
 
@@ -213,3 +216,64 @@ class InvoiceLineItem(models.Model):
     
     class Meta:
         ordering = ['created_at']
+
+
+class ChangeLog(models.Model):
+    """
+    Unified change tracking for Client, Mandate, and TimeEntry models.
+    Tracks all field changes with old and new values.
+    """
+    CHANGE_TYPE_CHOICES = [
+        ('CREATE', 'Create'),
+        ('UPDATE', 'Update'),
+        ('DELETE', 'Delete'),
+    ]
+    
+    # Generic foreign key to track changes for any model
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    
+    # Change details
+    field_name = models.CharField(max_length=100, help_text="Name of the field that changed")
+    old_value = models.TextField(null=True, blank=True, help_text="Previous value (JSON serialized)")
+    new_value = models.TextField(null=True, blank=True, help_text="New value (JSON serialized)")
+    change_type = models.CharField(
+        max_length=20, 
+        choices=CHANGE_TYPE_CHOICES,
+        help_text="Type of change operation"
+    )
+    
+    # Metadata
+    changed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE,
+        help_text="User who made the change"
+    )
+    changed_at = models.DateTimeField(auto_now_add=True, help_text="When the change occurred")
+    
+    # Additional context
+    ip_address = models.GenericIPAddressField(null=True, blank=True, help_text="IP address of the user")
+    user_agent = models.TextField(null=True, blank=True, help_text="User agent string")
+    
+    class Meta:
+        ordering = ['-changed_at']
+        indexes = [
+            models.Index(fields=['content_type', 'object_id']),
+            models.Index(fields=['changed_by']),
+            models.Index(fields=['changed_at']),
+            models.Index(fields=['change_type']),
+        ]
+    
+    def __str__(self):
+        return f"{self.content_type.model} #{self.object_id} - {self.field_name} {self.change_type.lower()}d by {self.changed_by.email}"
+    
+    @property
+    def model_name(self):
+        """Return the model name for the tracked object."""
+        return self.content_type.model
+    
+    @property
+    def app_label(self):
+        """Return the app label for the tracked object."""
+        return self.content_type.app_label

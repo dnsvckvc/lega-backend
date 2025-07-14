@@ -1,0 +1,241 @@
+{
+  "name": "📋 Change Logs",
+  "item": [
+    {
+      "name": "Get All Change Logs",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Change Log by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/1/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", "1", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Client Changes Only",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/client-changes/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", "client-changes", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Mandate Changes Only",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/mandate-changes/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", "mandate-changes", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Time Entry Changes Only",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/timeentry-changes/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", "timeentry-changes", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Recent Changes (Last 24 Hours)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/recent/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", "recent", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Changes by User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/user-activity/?user_id=1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", "user-activity", ""],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Object Change History",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/object-history/?model_name=client&object_id=1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", "object-history", ""],
+          "query": [
+            {
+              "key": "model_name",
+              "value": "client"
+            },
+            {
+              "key": "object_id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter Changes by Date Range",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/?changed_at_from=2025-07-01&changed_at_to=2025-07-31",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", ""],
+          "query": [
+            {
+              "key": "changed_at_from",
+              "value": "2025-07-01"
+            },
+            {
+              "key": "changed_at_to",
+              "value": "2025-07-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter Changes by Change Type",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/?change_type=UPDATE",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", ""],
+          "query": [
+            {
+              "key": "change_type",
+              "value": "UPDATE"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search Changes",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/change-logs/?search=name",
+          "host": ["{{base_url}}"],
+          "path": ["api", "change-logs", ""],
+          "query": [
+            {
+              "key": "search",
+              "value": "name"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

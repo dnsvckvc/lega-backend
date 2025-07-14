@@ -14,9 +14,10 @@ from authentication.permissions import (
     IsAdminLawyer, ReadOnlyOrAdmin, CanAccessMandate, 
     CanAccessTimeEntry, CanModifyMandate
 )
+from .change_tracking_mixin import ChangeTrackingMixin
 
 
-class ClientViewSet(viewsets.ModelViewSet):
+class ClientViewSet(ChangeTrackingMixin, viewsets.ModelViewSet):
     """
     Client Management API
     
@@ -210,7 +211,7 @@ class LawyerViewSet(viewsets.ModelViewSet):
         })
 
 
-class MandateViewSet(viewsets.ModelViewSet):
+class MandateViewSet(ChangeTrackingMixin, viewsets.ModelViewSet):
     """
     Mandate (Legal Project) Management API
     
@@ -325,7 +326,7 @@ class MandateViewSet(viewsets.ModelViewSet):
         })
 
 
-class TimeEntryViewSet(viewsets.ModelViewSet):
+class TimeEntryViewSet(ChangeTrackingMixin, viewsets.ModelViewSet):
     """
     Time Entry Management API
     
