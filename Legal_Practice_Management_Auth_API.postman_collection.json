@@ -1043,6 +1043,42 @@
 					}
 				},
 				{
+					"name": "Get Mandate Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Mandate details returned', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('client_name');",
+									"    pm.expect(jsonData).to.have.property('lawyers_names');",
+									"    console.log('Mandate details:', jsonData.name);",
+									"    console.log('Client:', jsonData.client_name);",
+									"    console.log('Lawyers:', jsonData.lawyers_names);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/mandates/{{test_mandate_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "mandates", "{{test_mandate_id}}", ""]
+						}
+					}
+				},
+				{
 					"name": "Update Mandate",
 					"event": [
 						{
