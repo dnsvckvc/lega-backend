@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,42cfb0116172.ngrok-free.app').split(',')
 
 
 # Application definition
@@ -179,7 +179,7 @@ REST_FRAMEWORK = {
 # CORS settings - environment variable driven
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173,http://localhost:8080,http://127.0.0.1:8080,http://localhost:4200'
+    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173,http://localhost:8080,http://127.0.0.1:8080,http://localhost:4200,https://42cfb0116172.ngrok-free.app'
 ).split(',')
 
 # For development, also allow any localhost origin
@@ -190,11 +190,14 @@ if DEBUG:
         r"^http://127\.0\.0\.1:\d+$",
     ]
 
-# Production CORS settings for Vercel
+# Production CORS settings for Vercel and ngrok
 CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://.*\.vercel\.app$",  # Allow all Vercel preview deployments
-    r"^http://localhost:\d+$",     # Local development
-    r"^http://127\.0\.0\.1:\d+$",  # Local development
+    r"^https://.*\.vercel\.app$",           # Allow all Vercel preview deployments
+    r"^https://.*\.ngrok-free\.app$",       # Allow ngrok free domains
+    r"^https://.*\.ngrok\.io$",             # Allow ngrok paid domains
+    r"^https://.*\.ngrok\.app$",            # Allow ngrok app domains
+    r"^http://localhost:\d+$",             # Local development
+    r"^http://127\.0\.0\.1:\d+$",          # Local development
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -224,6 +227,15 @@ CORS_ALLOW_METHODS = [
 
 # Additional CORS settings for production
 CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
+
+# ngrok-specific settings
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Trust ngrok headers
+SECURE_SSL_REDIRECT = False  # Let ngrok handle SSL termination
+SECURE_HSTS_SECONDS = 0  # Disable HSTS for ngrok development
 
 # JWT Settings
 from datetime import timedelta
