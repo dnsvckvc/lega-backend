@@ -40,11 +40,11 @@ print()
 
 # Test ngrok URL matching
 print("3. NGROK URL TESTING:")
-ngrok_url = "https://714bd790aa57.ngrok-free.app"
+ngrok_url = "https://5805d436b349.ngrok-free.app"
 print(f"   Testing URL: {ngrok_url}")
 
 # Check if URL is in ALLOWED_HOSTS
-host_domain = "714bd790aa57.ngrok-free.app"
+host_domain = "5805d436b349.ngrok-free.app"
 if host_domain in settings.ALLOWED_HOSTS:
     print(f"   ✅ {host_domain} is in ALLOWED_HOSTS")
 else:

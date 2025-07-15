@@ -1,6 +1,6 @@
 # Remote Server Deployment Guide
 
-This guide walks you through deploying the Legal Practice Management Backend on a remote server for development/testing and production use.
+This guide walks you through deploying the Legal Practice Management Backend on a remote server for development/testing and production use, including ngrok setup for HTTPS tunneling.
 
 ## 🚀 Quick Start for Remote Development
 
@@ -231,18 +231,210 @@ docker-compose -f docker-compose.remote.yml exec web tail -f logs/general.log
 docker-compose -f docker-compose.remote.yml exec web tail -f logs/api_requests.log
 ```
 
+## 🌍 Production Deployment with ngrok
+
+For production deployments requiring HTTPS tunneling (e.g., for Vercel frontend integration), follow these steps:
+
+### Step 1: Install ngrok on Remote Server
+
+```bash
+# On your remote server
+# Download ngrok
+wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+tar xvzf ngrok-v3-stable-linux-amd64.tgz
+sudo mv ngrok /usr/local/bin
+
+# Alternative: using package manager
+# Ubuntu/Debian:
+curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+sudo apt update && sudo apt install ngrok
+
+# Add your authtoken (get from https://dashboard.ngrok.com/get-started/your-authtoken)
+ngrok config add-authtoken YOUR_NGROK_AUTHTOKEN
+```
+
+### Step 2: Deploy with ngrok
+
+```bash
+# Terminal 1: Start ngrok tunnel
+ngrok http 8000 --log=stdout > ngrok.log 2>&1 &
+
+# Get the ngrok URL
+curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url'
+
+# Terminal 2: Update environment and deploy
+python3 fix_ngrok.py  # Auto-update .env with current ngrok URL
+docker-compose -f docker-compose.remote.yml up -d --build
+```
+
+### Step 3: Production ngrok Service (Recommended)
+
+Create a systemd service for ngrok to ensure it starts automatically:
+
+```bash
+# Create ngrok service file
+sudo tee /etc/systemd/system/ngrok.service > /dev/null <<EOF
+[Unit]
+Description=ngrok tunnel
+After=network.target
+
+[Service]
+Type=simple
+User=$USER
+WorkingDirectory=$HOME/legal-practice-backend
+ExecStart=/usr/local/bin/ngrok http 8000 --log=stdout
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Enable and start the service
+sudo systemctl daemon-reload
+sudo systemctl enable ngrok
+sudo systemctl start ngrok
+
+# Check status
+sudo systemctl status ngrok
+```
+
+### Step 4: Auto-Update Script for URL Changes
+
+Create a deployment script that handles ngrok URL changes:
+
+```bash
+# Create deploy-with-ngrok.sh
+tee deploy-with-ngrok.sh > /dev/null <<'EOF'
+#!/bin/bash
+set -e
+
+echo "🚀 Deploying with ngrok..."
+
+# Wait for ngrok to be ready
+echo "⏳ Waiting for ngrok..."
+until curl -s http://localhost:4040/api/tunnels > /dev/null; do
+    echo "Waiting for ngrok to start..."
+    sleep 2
+done
+
+# Get current ngrok URL
+NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[] | select(.proto=="https") | .public_url')
+echo "📍 Current ngrok URL: $NGROK_URL"
+
+# Update environment files
+python3 fix_ngrok.py
+
+# Deploy containers
+echo "🐳 Deploying containers..."
+docker-compose -f docker-compose.remote.yml up -d --build
+
+# Test the deployment
+echo "🧪 Testing deployment..."
+sleep 10
+curl -I "$NGROK_URL/docs/" || echo "⚠️  Deployment test failed"
+
+echo "✅ Deployment complete!"
+echo "📍 Your API is available at: $NGROK_URL"
+echo "📚 Documentation: $NGROK_URL/docs/"
+echo "🔧 Admin: $NGROK_URL/admin/"
+EOF
+
+chmod +x deploy-with-ngrok.sh
+```
+
+### Step 5: Frontend Integration
+
+Update your frontend environment variables:
+
+```bash
+# For Vercel deployment
+vercel env add NEXT_PUBLIC_API_URL
+# Enter: https://your-ngrok-url.ngrok-free.app
+
+vercel env add NEXT_PUBLIC_AUTH_URL  
+# Enter: https://your-ngrok-url.ngrok-free.app/auth
+```
+
+### Step 6: Production Monitoring
+
+Monitor your ngrok tunnel and Django backend:
+
+```bash
+# Check ngrok status
+curl -s http://localhost:4040/api/tunnels | jq '.'
+
+# Check Django logs
+docker-compose -f docker-compose.remote.yml logs web | tail -50
+
+# Monitor container health
+docker-compose -f docker-compose.remote.yml ps
+```
+
+## 🔄 URL Change Management
+
+### Automatic Updates (Recommended)
+
+Set up a cron job to handle ngrok URL changes:
+
+```bash
+# Add to crontab (every 5 minutes)
+crontab -e
+
+# Add this line:
+*/5 * * * * cd /path/to/your/project && python3 fix_ngrok.py && docker-compose -f docker-compose.remote.yml restart web > /dev/null 2>&1
+```
+
+### Manual Updates
+
+When ngrok URL changes (free accounts):
+
+```bash
+# Get new URL and update
+python3 fix_ngrok.py
+
+# Restart Django to pick up new configuration
+docker-compose -f docker-compose.remote.yml restart web
+
+# Update Vercel environment variables
+vercel env rm NEXT_PUBLIC_API_URL
+vercel env add NEXT_PUBLIC_API_URL
+# Enter the new ngrok URL
+```
+
+## ⚡ Quick Production Commands
+
+```bash
+# Complete deployment from scratch
+git pull origin main
+./deploy-with-ngrok.sh
+
+# Quick restart after code changes  
+git pull origin main
+docker-compose -f docker-compose.remote.yml up -d --build
+
+# Emergency restart (if ngrok URL changed)
+python3 fix_ngrok.py
+docker-compose -f docker-compose.remote.yml restart web
+
+# Check everything is working
+curl -I "$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')/docs/"
+```
+
 ## 🎯 Next Steps
 
-1. **Test Documentation**: Visit `http://YOUR_SERVER_IP/docs/`
-2. **Update Postman**: Change base_url to your server IP
-3. **Test API Endpoints**: Use Postman collections
-4. **Connect Frontend**: Add CORS origins for your frontend
-5. **Production Setup**: Use `docker-compose.prod.yml` when ready
+1. **ngrok Production Setup**: Follow the ngrok production steps above
+2. **Test Documentation**: Visit your ngrok URL `/docs/`
+3. **Update Frontend**: Configure Vercel with your ngrok URL
+4. **Test API Endpoints**: Use Postman collections with ngrok URL
+5. **Monitor Service**: Set up systemd service for ngrok
 
 ## 📞 Support
 
 If you encounter issues:
-1. Check the logs: `docker-compose -f docker-compose.remote.yml logs`
-2. Verify environment variables in `.env`
-3. Ensure firewall ports are open
-4. Test with curl commands above
+1. Check ngrok status: `curl -s http://localhost:4040/api/tunnels`
+2. Check Django logs: `docker-compose -f docker-compose.remote.yml logs web`
+3. Verify environment variables: `cat .env`
+4. Test ngrok tunnel: `curl -I YOUR_NGROK_URL/docs/`
+5. Restart services: `sudo systemctl restart ngrok && docker-compose -f docker-compose.remote.yml restart web`

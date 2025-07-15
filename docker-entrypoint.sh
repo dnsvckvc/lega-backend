@@ -136,6 +136,46 @@ ensure_logs_permissions() {
     fi
 }
 
+# Function to auto-detect ngrok tunnel
+detect_ngrok() {
+    echo -e "${YELLOW}Checking for ngrok tunnel...${NC}"
+    
+    # Check if ngrok API is accessible
+    if curl -s --connect-timeout 2 host.docker.internal:4040/api/tunnels > /dev/null 2>&1; then
+        echo -e "${GREEN}ngrok API accessible, detecting URL...${NC}"
+        
+        # Get the HTTPS tunnel URL
+        NGROK_URL=$(curl -s host.docker.internal:4040/api/tunnels | jq -r '.tunnels[] | select(.proto=="https") | .public_url' 2>/dev/null || echo '')
+        
+        if [ -n "$NGROK_URL" ] && [ "$NGROK_URL" != "null" ]; then
+            # Extract domain from URL
+            NGROK_DOMAIN=$(echo "$NGROK_URL" | sed 's|https://||' | sed 's|/.*||')
+            
+            # Add ngrok domain to ALLOWED_HOSTS
+            if [ -n "$ALLOWED_HOSTS" ]; then
+                export ALLOWED_HOSTS="${ALLOWED_HOSTS},${NGROK_DOMAIN}"
+            else
+                export ALLOWED_HOSTS="localhost,127.0.0.1,0.0.0.0,${NGROK_DOMAIN}"
+            fi
+            
+            # Add ngrok URL to CORS_ALLOWED_ORIGINS
+            if [ -n "$CORS_ALLOWED_ORIGINS" ]; then
+                export CORS_ALLOWED_ORIGINS="${CORS_ALLOWED_ORIGINS},${NGROK_URL}"
+            else
+                export CORS_ALLOWED_ORIGINS="http://localhost:3000,${NGROK_URL}"
+            fi
+            
+            echo -e "${GREEN}✅ Auto-detected ngrok tunnel: $NGROK_URL${NC}"
+            echo -e "${GREEN}📝 Updated ALLOWED_HOSTS: $ALLOWED_HOSTS${NC}"
+            echo -e "${GREEN}🌐 Updated CORS_ALLOWED_ORIGINS: $CORS_ALLOWED_ORIGINS${NC}"
+        else
+            echo -e "${YELLOW}⚠️  ngrok API responded but no HTTPS tunnel found${NC}"
+        fi
+    else
+        echo -e "${YELLOW}ℹ️  ngrok not accessible (this is normal if not using ngrok)${NC}"
+    fi
+}
+
 # Function to check system health
 check_system_health() {
     echo -e "${YELLOW}Checking system health...${NC}"
@@ -156,6 +196,9 @@ check_system_health() {
 # Main execution
 main() {
     echo -e "${GREEN}=== Legal Backend Initialization ===${NC}"
+    
+    # Auto-detect ngrok tunnel first (so environment vars are set early)
+    detect_ngrok
     
     # Ensure logs directory permissions
     ensure_logs_permissions
