@@ -5,11 +5,36 @@ These factories can be used across different test files to create objects with r
 
 from decimal import Decimal
 from datetime import date, timedelta
+from django.contrib.auth import get_user_model
 from .models import Client, Lawyer, Mandate, TimeEntry
+
+User = get_user_model()
 
 
 class TestDataFactory:
     """Factory class for creating test data objects"""
+    
+    @staticmethod
+    def create_user(username=None, email=None, role='lawyer', **kwargs):
+        """Create a test user with default or custom data"""
+        defaults = {
+            'username': username or 'testuser',
+            'email': email or 'test@example.com',
+            'password': 'testpass123',
+            'role': role
+        }
+        defaults.update(kwargs)
+        return User.objects.create_user(**defaults)
+    
+    @staticmethod
+    def create_admin_user(username=None, email=None, **kwargs):
+        """Create a test admin user"""
+        return TestDataFactory.create_user(
+            username=username or 'admin',
+            email=email or 'admin@example.com',
+            role='admin',
+            **kwargs
+        )
     
     @staticmethod
     def create_client(name=None, email=None, **kwargs):

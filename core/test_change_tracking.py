@@ -1,12 +1,11 @@
 """
-Unit tests for change tracking functionality.
+Unit tests for change tracking functionality using test factories.
 """
 
 import json
 from decimal import Decimal
 from datetime import date, datetime, timedelta
 from django.test import TestCase, override_settings
-from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from rest_framework.test import APITestCase
@@ -15,59 +14,31 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Client, Lawyer, Mandate, TimeEntry, ChangeLog
 from .change_tracker import ChangeTracker
-
-
-User = get_user_model()
+from .test_factories import TestDataFactory
 
 
 class ChangeTrackerTestCase(TestCase):
     """Test cases for the ChangeTracker service."""
     
     def setUp(self):
-        """Set up test data."""
-        self.admin_user = User.objects.create_user(
-            username='admin',
-            email='admin@test.com',
-            password='testpass123',
-            role='admin'
-        )
+        """Set up test data using factories."""
+        self.admin_user = TestDataFactory.create_admin_user('admin', 'admin@test.com')
+        self.regular_user = TestDataFactory.create_user('lawyer', 'lawyer@test.com')
         
-        self.regular_user = User.objects.create_user(
-            username='lawyer',
-            email='lawyer@test.com',
-            password='testpass123',
-            role='lawyer'
-        )
-        
-        self.client = Client.objects.create(
-            name='Test Client',
-            email='client@test.com',
-            phone='123-456-7890',
-            address='123 Test St'
-        )
-        
-        self.lawyer = Lawyer.objects.create(
-            name='Test Lawyer',
-            email='lawyer@test.com',
-            phone='123-456-7890',
-            hourly_rate=Decimal('150.00')
-        )
-        
-        self.mandate = Mandate.objects.create(
-            name='Test Mandate',
-            description='Test mandate description',
+        self.client = TestDataFactory.create_client('Test Client', 'client@test.com')
+        self.lawyer = TestDataFactory.create_lawyer('Test Lawyer', 'lawyer@test.com')
+        self.mandate = TestDataFactory.create_mandate(
             client=self.client,
-            due_date=date.today() + timedelta(days=30),
-            cost_ceiling=Decimal('5000.00')
+            name='Test Mandate',
+            description='Test mandate description'
         )
         self.mandate.lawyers.add(self.lawyer)
         
-        self.time_entry = TimeEntry.objects.create(
+        self.time_entry = TestDataFactory.create_time_entry(
             mandate=self.mandate,
             lawyer=self.lawyer,
-            date=date.today(),
             hours=Decimal('2.5'),
-            description='Test work'
+            entry_date=date.today()
         )
     
     def test_track_model_creation(self):
@@ -75,13 +46,16 @@ class ChangeTrackerTestCase(TestCase):
         # Clear any existing change logs
         ChangeLog.objects.all().delete()
         
+        # Create a new client using factory
+        new_client = TestDataFactory.create_client('New Client', 'new@test.com')
+        
         # Track creation
-        ChangeTracker.track_model_creation(self.client, self.admin_user)
+        ChangeTracker.track_model_creation(new_client, self.admin_user)
         
         # Check that change logs were created
         change_logs = ChangeLog.objects.filter(
             content_type=ContentType.objects.get_for_model(Client),
-            object_id=self.client.id,
+            object_id=new_client.id,
             change_type='CREATE'
         )
         
@@ -91,7 +65,7 @@ class ChangeTrackerTestCase(TestCase):
         # Check specific field change
         name_change = change_logs.get(field_name='name')
         self.assertEqual(name_change.old_value, 'null')
-        self.assertEqual(json.loads(name_change.new_value), 'Test Client')
+        self.assertEqual(json.loads(name_change.new_value), 'New Client')
         self.assertEqual(name_change.changed_by, self.admin_user)
     
     def test_track_model_update(self):
@@ -210,54 +184,29 @@ class ChangeTrackingAPITestCase(APITestCase):
     """Test cases for change tracking API endpoints."""
     
     def setUp(self):
-        """Set up test data."""
-        self.admin_user = User.objects.create_user(
-            username='admin',
-            email='admin@test.com',
-            password='testpass123',
-            role='admin'
-        )
+        """Set up test data using factories."""
+        self.admin_user = TestDataFactory.create_admin_user('admin', 'admin@test.com')
+        self.regular_user = TestDataFactory.create_user('lawyer', 'lawyer@test.com')
         
-        self.regular_user = User.objects.create_user(
-            username='lawyer',
-            email='lawyer@test.com',
-            password='testpass123',
-            role='lawyer'
-        )
-        
-        self.lawyer = Lawyer.objects.create(
-            name='Test Lawyer',
-            email='lawyer@test.com',
-            phone='123-456-7890',
-            hourly_rate=Decimal('150.00')
-        )
+        self.lawyer = TestDataFactory.create_lawyer('Test Lawyer', 'lawyer@test.com')
         
         # Link regular user to lawyer profile
         self.regular_user.lawyer_profile = self.lawyer
         self.regular_user.save()
         
-        self.client_model = Client.objects.create(
-            name='Test Client',
-            email='client@test.com',
-            phone='123-456-7890',
-            address='123 Test St'
-        )
-        
-        self.mandate = Mandate.objects.create(
-            name='Test Mandate',
-            description='Test mandate description',
+        self.client_model = TestDataFactory.create_client('Test Client', 'client@test.com')
+        self.mandate = TestDataFactory.create_mandate(
             client=self.client_model,
-            due_date=date.today() + timedelta(days=30),
-            cost_ceiling=Decimal('5000.00')
+            name='Test Mandate',
+            description='Test mandate description'
         )
         self.mandate.lawyers.add(self.lawyer)
         
-        self.time_entry = TimeEntry.objects.create(
+        self.time_entry = TestDataFactory.create_time_entry(
             mandate=self.mandate,
             lawyer=self.lawyer,
-            date=date.today(),
             hours=Decimal('2.5'),
-            description='Test work'
+            entry_date=date.today()
         )
         
         # Create some change logs
@@ -501,20 +450,9 @@ class ChangeTrackingIntegrationTestCase(APITestCase):
     """Integration tests for change tracking with CRUD operations."""
     
     def setUp(self):
-        """Set up test data."""
-        self.admin_user = User.objects.create_user(
-            username='admin',
-            email='admin@test.com',
-            password='testpass123',
-            role='admin'
-        )
-        
-        self.lawyer = Lawyer.objects.create(
-            name='Test Lawyer',
-            email='lawyer@test.com',
-            phone='123-456-7890',
-            hourly_rate=Decimal('150.00')
-        )
+        """Set up test data using factories."""
+        self.admin_user = TestDataFactory.create_admin_user('admin', 'admin@test.com')
+        self.lawyer = TestDataFactory.create_lawyer('Test Lawyer', 'lawyer@test.com')
     
     def get_admin_token(self):
         """Get JWT token for admin user."""
@@ -594,13 +532,8 @@ class ChangeTrackingIntegrationTestCase(APITestCase):
         token = self.get_admin_token()
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
         
-        # Create a client first
-        client_obj = Client.objects.create(
-            name='Test Client',
-            email='client@test.com',
-            phone='123-456-7890',
-            address='123 Test St'
-        )
+        # Create a client using factory
+        client_obj = TestDataFactory.create_client('Test Client', 'client@test.com')
         
         # Clear existing change logs
         ChangeLog.objects.all().delete()
@@ -656,20 +589,12 @@ class ChangeTrackingIntegrationTestCase(APITestCase):
         token = self.get_admin_token()
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
         
-        # Create dependencies
-        client_obj = Client.objects.create(
-            name='Test Client',
-            email='client@test.com',
-            phone='123-456-7890',
-            address='123 Test St'
-        )
-        
-        mandate_obj = Mandate.objects.create(
-            name='Test Mandate',
-            description='Test mandate description',
+        # Create dependencies using factories
+        client_obj = TestDataFactory.create_client('Test Client', 'client@test.com')
+        mandate_obj = TestDataFactory.create_mandate(
             client=client_obj,
-            due_date=date.today() + timedelta(days=30),
-            cost_ceiling=Decimal('5000.00')
+            name='Test Mandate',
+            description='Test mandate description'
         )
         mandate_obj.lawyers.add(self.lawyer)
         
