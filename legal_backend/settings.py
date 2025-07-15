@@ -190,9 +190,16 @@ if DEBUG:
         r"^http://127\.0\.0\.1:\d+$",
     ]
 
+# Production CORS settings for Vercel
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.vercel\.app$",  # Allow all Vercel preview deployments
+    r"^http://localhost:\d+$",     # Local development
+    r"^http://127\.0\.0\.1:\d+$",  # Local development
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
-# Additional CORS settings for development
+# Additional CORS settings for production
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
@@ -204,6 +211,19 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+
+# CORS methods
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+# Additional CORS settings for production
+CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
 
 # JWT Settings
 from datetime import timedelta

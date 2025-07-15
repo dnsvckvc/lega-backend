@@ -33,3 +33,401 @@ Traceback (most recent call last):
   File "/Users/dvuckovac/opt/anaconda3/lib/python3.9/site-packages/rest_framework/generics.py", line 122, in get_serializer_class
     assert self.serializer_class is not None, (
 AssertionError: 'MonthlyInvoiceGenerationView' should either include a `serializer_class` attribute, or override the `get_serializer_class()` method.
+ERROR 2025-07-14 15:54:04,763 log 1 281472835117088 Internal Server Error: /api/change-logs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:05,046 log 1 281472835117088 Internal Server Error: /api/change-logs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:05,373 log 1 281472835117088 Internal Server Error: /api/change-logs/20/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 83, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:05,650 log 1 281472835117088 Internal Server Error: /api/change-logs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:05,929 log 1 281472835117088 Internal Server Error: /api/change-logs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:06,209 log 1 281472835117088 Internal Server Error: /api/change-logs/client_changes/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/core/change_log_views.py", line 145, in client_changes
+    filtered_queryset = self.filter_queryset(queryset)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:06,489 log 1 281472835117088 Internal Server Error: /api/change-logs/mandate_changes/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/core/change_log_views.py", line 162, in mandate_changes
+    filtered_queryset = self.filter_queryset(queryset)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:06,773 log 1 281472835117088 Internal Server Error: /api/change-logs/object_history/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/core/change_log_views.py", line 280, in object_history
+    filtered_queryset = self.filter_queryset(queryset)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:07,326 log 1 281472835117088 Internal Server Error: /api/change-logs/recent/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/core/change_log_views.py", line 196, in recent
+    filtered_queryset = self.filter_queryset(queryset)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:07,604 log 1 281472835117088 Internal Server Error: /api/change-logs/timeentry_changes/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/core/change_log_views.py", line 179, in timeentry_changes
+    filtered_queryset = self.filter_queryset(queryset)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:07,882 log 1 281472835117088 Internal Server Error: /api/change-logs/user_activity/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/core/change_log_views.py", line 226, in user_activity
+    filtered_queryset = self.filter_queryset(queryset)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
+ERROR 2025-07-14 15:54:08,431 log 1 281472835117088 Internal Server Error: /api/change-logs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/generics.py", line 150, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 68, in filter_queryset
+    filterset = self.get_filterset(request, queryset, view)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 20, in get_filterset
+    filterset_class = self.get_filterset_class(view, queryset)
+  File "/usr/local/lib/python3.9/site-packages/django_filters/rest_framework/backends.py", line 51, in get_filterset_class
+    class AutoFilterSet(self.filterset_base):
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 62, in __new__
+    new_class.base_filters = new_class.get_filters()
+  File "/usr/local/lib/python3.9/site-packages/django_filters/filterset.py", line 349, in get_filters
+    raise TypeError(
+TypeError: 'Meta.fields' must not contain non-model field names: model_name
