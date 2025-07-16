@@ -22,6 +22,7 @@ services:
   web:
     build: .
     container_name: legal_backend_web_remote
+    env_file: .env.remote
     user: root
     environment:
       - DEBUG=${DEBUG:-True}
