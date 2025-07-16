@@ -54,9 +54,11 @@ services:
     container_name: legal_backend_nginx_remote
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx.remote.conf:/etc/nginx/nginx.conf
       - ./media:/app/media
+      - /etc/letsencrypt:/etc/nginx/ssl:ro
     depends_on:
       - web
     restart: unless-stopped
