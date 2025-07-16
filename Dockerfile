@@ -30,6 +30,10 @@ RUN adduser --disabled-password --gecos '' appuser
 # Copy project
 COPY . .
 
+# Copy entrypoint script and set permissions
+COPY docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
+
 # Create logs directory and set permissions
 RUN mkdir -p logs media static \
     && chown -R appuser:appuser /app \
@@ -40,10 +44,6 @@ USER appuser
 
 # Expose port
 EXPOSE 8000
-
-# Copy entrypoint script
-COPY --chown=appuser:appuser docker-entrypoint.sh /app/docker-entrypoint.sh
-RUN chmod +x /app/docker-entrypoint.sh
 
 # Run entrypoint script
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
