@@ -41,10 +41,12 @@ services:
     volumes:
       - ./media:/app/media
       - logs_data:/app/logs
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     restart: unless-stopped
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             python manage.py create_demo_users --clear &&
+             python manage.py runserver 0.0.0.0:8000"
 
   nginx:
     image: nginx:alpine
