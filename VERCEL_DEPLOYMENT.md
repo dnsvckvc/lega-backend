@@ -1,6 +1,6 @@
 # Vercel Frontend Deployment Configuration
 
-This guide covers the necessary changes to deploy your frontend on Vercel and connect it to your Django backend, including ngrok reverse proxy setup.
+This guide covers the necessary changes to deploy your frontend on Vercel and connect it to your Django backend.
 
 ## 1. Django Backend Configuration
 
@@ -13,35 +13,14 @@ The Django settings have been updated to support Vercel deployments. The followi
 Add these environment variables to your deployment environment:
 
 ```bash
-# Production CORS settings (including ngrok)
-CORS_ALLOWED_ORIGINS=https://your-app.vercel.app,https://your-app-git-main.vercel.app,https://42cfb0116172.ngrok-free.app
+# Production CORS settings
+CORS_ALLOWED_ORIGINS=https://your-app.vercel.app,https://your-app-git-main.vercel.app
 DEBUG=False
-ALLOWED_HOSTS=your-backend-domain.com,127.0.0.1,localhost,42cfb0116172.ngrok-free.app
+ALLOWED_HOSTS=your-backend-domain.com,127.0.0.1,localhost
 
 # If using custom domain on Vercel
-CORS_ALLOWED_ORIGINS=https://your-custom-domain.com,https://your-app.vercel.app,https://42cfb0116172.ngrok-free.app
+CORS_ALLOWED_ORIGINS=https://your-custom-domain.com,https://your-app.vercel.app
 ```
-
-### ngrok Configuration (Quick HTTPS Solution)
-For immediate HTTPS access without SSL certificate setup:
-
-```bash
-# 1. Install ngrok on your server
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-unzip ngrok-stable-linux-amd64.zip
-sudo mv ngrok /usr/local/bin/
-
-# 2. Configure with auth token (get from ngrok.com)
-ngrok config add-authtoken YOUR_AUTH_TOKEN
-
-# 3. Start Django server
-python manage.py runserver 0.0.0.0:8000
-
-# 4. In another terminal, start ngrok
-ngrok http 8000
-```
-
-**Current ngrok URL**: `https://42cfb0116172.ngrok-free.app`
 
 ### Security Settings for Production
 Ensure these settings are configured for production:
@@ -59,11 +38,11 @@ ALLOWED_HOSTS=your-backend-domain.com,your-api-server.com
 In your Vercel dashboard, add these environment variables:
 
 ```bash
-# API Configuration (using ngrok)
-NEXT_PUBLIC_API_URL=https://42cfb0116172.ngrok-free.app/api
-NEXT_PUBLIC_AUTH_URL=https://42cfb0116172.ngrok-free.app/auth
+# API Configuration
+NEXT_PUBLIC_API_URL=https://your-backend-domain.com/api
+NEXT_PUBLIC_AUTH_URL=https://your-backend-domain.com/auth
 
-# Or if using production backend
+# Or if using different environments
 NEXT_PUBLIC_API_URL=https://your-backend-domain.com/api
 NEXT_PUBLIC_AUTH_URL=https://your-backend-domain.com/auth
 ```
